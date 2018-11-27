@@ -1,4 +1,4 @@
-(* Semantic checking for the MicroC compiler *)
+(* Semantic checking for textPlusPlus compiler *)
 
 open Ast
 open Sast
