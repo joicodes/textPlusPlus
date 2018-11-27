@@ -17,8 +17,8 @@ CC="cc"
 
 # Path to the textplusplus compiler.  Usually "./textplusplus.native"
 # Try "_build/textplusplus.native" if ocamlbuild was unable to create a symbolic link.
-TEXTPLUSPLUS="./textplusplus.native"
-#TEXTPLUSPLUS="_build/textplusplus.native"
+#TEXTPLUSPLUS="./textplusplus.native"
+TEXTPLUSPLUS="_build/textplusplus.native"
 
 # Set time limit for all operations
 ulimit -t 30
