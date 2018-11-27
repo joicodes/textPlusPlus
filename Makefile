@@ -30,7 +30,7 @@ clean :
 # Testing the "hello" example
 
 hello : hello.c
-	 -o hello  hello.c -lhpdf
+	 -o hello  hello.c -lhpdf\
 
 # Building the tarball
 
