@@ -14,9 +14,7 @@ rule token = parse
 | '}'      { RBRACE }
 | '['      { LBRACKET }
 | ']'      { RBRACKET }
-| '@'      { TAG }
 | ';'      { SEMI }
-| ':'	     { COLON }
 | ','      { COMMA }
 
 (* Arithmetic Operators *)
