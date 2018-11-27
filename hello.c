@@ -4,7 +4,7 @@
 #include <setjmp.h>
 #include "hpdf.h"
 
-int main(int param)
+int hello(int param)
 {
 	HPDF_Doc pdf;
 	HPDF_Font font;
