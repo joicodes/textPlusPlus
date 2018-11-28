@@ -4,7 +4,7 @@
 #include <setjmp.h>
 #include "hpdf.h"
 
-int main(int param)
+int hello(int argc)
 {
 	HPDF_Doc pdf;
 	HPDF_Font font;
@@ -41,3 +41,11 @@ int main(int param)
 
     return 0;
 }
+
+#ifdef BUILD_TEST
+int main()
+{
+    hello(0);
+    return 0;
+}
+#endif
