@@ -34,8 +34,8 @@ hello : hello.c
 
 # Building the tarball
 
-TESTS = \ 
-hello
+TESTS = \
+  hello
 
 FAILS = \
   
