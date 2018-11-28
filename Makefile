@@ -2,7 +2,7 @@
 
 .PHONY : test
 test : all testall.sh
-#	./testall.sh
+	./testall.sh
 
 # "make all" builds the executable as well as the "hello" library designed
 # to test linking external code
@@ -34,7 +34,8 @@ hello : hello.c
 
 # Building the tarball
 
-TESTS = \
+TESTS = \ 
+hello
 
 FAILS = \
   
