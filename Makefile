@@ -25,7 +25,7 @@ textplusplus.native :
 .PHONY : clean
 clean :
 	ocamlbuild -clean
-	rm -rf testall.log ocamlllvm *.diff
+	rm -rf testall.log ocamlllvm *.diff test-*.exe test-*.ll test-*.out test-*.s text.pdf
 
 # Testing the "hello" example
 
