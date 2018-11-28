@@ -1,7 +1,7 @@
 # "make test" Compiles everything and runs the regression tests
 
 .PHONY : test
-#test : all testall.sh
+test : all testall.sh
 #	./testall.sh
 
 # "make all" builds the executable as well as the "hello" library designed
@@ -30,7 +30,7 @@ clean :
 # Testing the "hello" example
 
 hello : hello.c
-	 -o hello  hello.c -lhpdf\
+	 cc -o hello -DBUILD_TEST hello.c
 
 # Building the tarball
 
