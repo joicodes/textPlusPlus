@@ -1,8 +1,10 @@
-How to run Hello World:
+## How to run Hello World:
 
-## Installing Libharu:
+#### Installing Libharu:
 
-####Before installation  the following dependecies are required:
+Before installation  the following dependecies are required:
 
+```
 sudo apt-get install automake autoconf zlib1g-dev libpng-dev libtool
+```
 
