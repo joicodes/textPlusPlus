@@ -47,4 +47,4 @@ make
 ```
 
 a file called `text.pdf` is produced. 
-gcc pdf.c grid\_sheet.c -o pdf -lhpdf\
+
