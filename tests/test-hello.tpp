@@ -1,8 +1,8 @@
 def void start()
 {
-  write();
-  addPage();
-  addPage();
-  addPage();
+  write(0);
+  addPage(0);
+  addPage(0);
+  addPage(0);
   return;
 }

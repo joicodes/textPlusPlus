@@ -32,6 +32,7 @@ extern void start();
 
 jmp_buf env;
 
+// adding a comment
 void
 error_handler (HPDF_STATUS   error_no,
                HPDF_STATUS   detail_no,
@@ -43,7 +44,7 @@ error_handler (HPDF_STATUS   error_no,
 }
 
 
-int  addPage(){
+int  addPage( int num){
 
     HPDF_Page newPage;
     newPage = HPDF_AddPage(pdf);
@@ -63,7 +64,7 @@ int  addPage(){
 }
 
 
-int write(){
+int write( int num){
     const char *text = "Hello World";
     HPDF_Page_TextOut (currentPage, currentX, 500, text);
     return 0;

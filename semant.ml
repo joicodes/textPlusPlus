@@ -36,11 +36,11 @@ let check (globals, functions) =
     let add_bind map (name, ty) = StringMap.add name {
       typ = Void;
       fname = name; 
-      formals = ty;
+      formals = [(ty, "x")];
       locals = []; body = [] } map
-    in List.fold_left add_bind StringMap.empty [ ("hello", [(Int, "x")]);
-                                                ("write", []);
-                                                ("addPage", []); ]
+    in List.fold_left add_bind StringMap.empty [ ("hello", Int);
+                                                ("write", Int);
+                                                ("addPage", Int); ]
   in
 
   (* Add function name to symbol table *)
