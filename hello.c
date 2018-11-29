@@ -32,6 +32,7 @@ extern void start();
 
 jmp_buf env;
 
+// adding a comment
 void
 error_handler (HPDF_STATUS   error_no,
                HPDF_STATUS   detail_no,
