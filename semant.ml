@@ -36,7 +36,7 @@ let check (globals, functions) =
     let add_bind map (name, ty) = StringMap.add name {
       typ = Void;
       fname = name; 
-      formals = [(ty, "x")];
+      formals = ty;
       locals = []; body = [] } map
     in List.fold_left add_bind StringMap.empty [ ("hello", [(Int, "x")]);
                                                 ("write", []);
