@@ -43,7 +43,7 @@ error_handler (HPDF_STATUS   error_no,
 }
 
 
-void addPage(){
+int  addPage( int num){
 
     HPDF_Page newPage;
     newPage = HPDF_AddPage(pdf);
@@ -58,6 +58,7 @@ void addPage(){
     currentX = 0;
     currentY = pageHeight;
     
+    return 0;
 
 }
 
@@ -65,7 +66,7 @@ void addPage(){
 int write( int num){
     const char *text = "Hello World";
     HPDF_Page_TextOut (currentPage, currentX, 500, text);
-    return 0;
+
 }
 
 
