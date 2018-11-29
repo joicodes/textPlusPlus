@@ -58,7 +58,6 @@ void addPage(){
     currentX = 0;
     currentY = pageHeight;
     
-    return 0;
 
 }
 
