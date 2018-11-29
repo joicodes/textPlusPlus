@@ -31,6 +31,7 @@ let translate (globals, functions) =
   and i8_t       = L.i8_type     context
   and i1_t       = L.i1_type     context
   and float_t    = L.double_type context
+  and str_t      = L.pointer_type (L.i8_type context)
   and void_t     = L.void_type   context in
 
   (* Return the LLVM type for a textPlusPlus type *)
@@ -39,6 +40,7 @@ let translate (globals, functions) =
     | A.Bool  -> i1_t
     | A.Float -> float_t
     | A.Void  -> void_t
+    | A.String -> str_t
   in
 
   (* Create a map of global variables after creating each *)
