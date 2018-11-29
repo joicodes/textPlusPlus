@@ -42,11 +42,6 @@ error_handler (HPDF_STATUS   error_no,
     longjmp(env, 1);
 }
 
- void startDoc(){
- 
-
-}
-
 
 void addPage(){
 
@@ -65,13 +60,6 @@ void addPage(){
 
 }
 
-
-
-void endDoc(){
-
-
-
-}
 
 void write(){
     const char *text = "Hello World";
