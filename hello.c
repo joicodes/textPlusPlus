@@ -43,24 +43,7 @@ error_handler (HPDF_STATUS   error_no,
 }
 
  void startDoc(){
-	
-    pdf = HPDF_New(error_handler, NULL);    
-
-    firstPage = HPDF_AddPage(pdf); 
-    currentPage = firstPage;
-    pageNumber = 1;
-
-    defaultFont = HPDF_GetFont (pdf, "Helvetica", NULL);
-    defaultSize = 12;
-    HPDF_Page_SetFontAndSize(firstPage, defaultFont, defaultSize); 
-
-    pageHeight = HPDF_Page_GetHeight(firstPage);
-    pageWidth = HPDF_Page_GetWidth(firstPage);
-
-    currentX = 0;
-    currentY = pageHeight;
-
-    HPDF_Page_BeginText (currentPage); 
+ 
 
 }
 
@@ -86,15 +69,12 @@ void addPage(){
 
 void endDoc(){
 
-    HPDF_Page_EndText (currentPage); 
 
-    HPDF_SaveToFile (pdf, "text.pdf");
-
-    HPDF_Free (pdf);
 
 }
 
 void write(char* text){
+    const char *page_title = "Hello World";
     HPDF_Page_TextOut (currentPage, currentX, 500, text);
 }
 
@@ -103,34 +83,46 @@ void write(char* text){
 
 int main(int argc)
 {
-	const char *page_title = "Hello World";
+    // Starts Document 
 
-	pdf = HPDF_New(NULL, NULL); //NULL -> void * user data used for error handling
+    pdf = HPDF_New(error_handler, NULL);   
 
     if (!pdf) {
         printf ("error: cannot create PdfDoc object\n");
         return 1;
-    }
+    } 
 
-    currentFont = HPDF_GetFont (pdf, "Helvetica", NULL);
-    currentPage = HPDF_AddPage (pdf); //creates new page and adds it to end of document
+    firstPage = HPDF_AddPage(pdf); 
+    currentPage = firstPage;
+    pageNumber = 1;
+
+    defaultFont = HPDF_GetFont (pdf, "Helvetica", NULL);
+    currentFont = defaultFont;
+    defaultSize = 12;
+    currentSize = defaultSize;
+    HPDF_Page_SetFontAndSize(firstPage, defaultFont, defaultSize); 
+
+    pageHeight = HPDF_Page_GetHeight(firstPage);
+    pageWidth = HPDF_Page_GetWidth(firstPage);
+
+    currentX = 0;
+    currentY = pageHeight;
+
+    HPDF_Page_BeginText (currentPage);
 
 
-    HPDF_Page_SetFontAndSize (currentPage, currentFont, 24); 
-
-    HPDF_Page_BeginText (currentPage); //begins text object and sets text position to (0, 0)
+    //HPDF_Page_TextOut (currentPage, 60, 500, page_title); // prints text in specified position
 
 
-    HPDF_Page_TextOut (currentPage, 60, 500, page_title); // prints text in specified position
 
+    // Program starts
     start();
 
-    HPDF_Page_EndText (currentPage); //ends a text object
 
-    /* save the document to a file */
+
+    // Ends program
+    HPDF_Page_EndText (currentPage);
     HPDF_SaveToFile (pdf, "text.pdf");
-
-    /* clean up */
     HPDF_Free (pdf);
 
     return 0;
