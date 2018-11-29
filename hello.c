@@ -43,7 +43,7 @@ error_handler (HPDF_STATUS   error_no,
 }
 
 
-int addPage(int num){
+void addPage(){
 
     HPDF_Page newPage;
     newPage = HPDF_AddPage(pdf);
