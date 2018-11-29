@@ -39,7 +39,7 @@ let check (globals, functions) =
       formals = [(ty, "x")];
       locals = []; body = [] } map
     in List.fold_left add_bind StringMap.empty [ ("hello", Int);
-                                                ("write", Int);
+                                                ("write", String);
                                                 ("addPage", Int); ]
   in
 

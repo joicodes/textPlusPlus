@@ -1,6 +1,6 @@
 def void start()
 {
-  write(0);
+  write("hello world, I am maria");
   addPage(0);
   addPage(0);
   addPage(0);
