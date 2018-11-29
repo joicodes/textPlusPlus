@@ -55,7 +55,7 @@ let translate (globals, functions) =
   let hello_func : L.llvalue =
       L.declare_function "hello" hello_t the_module in
   let write_t : L.lltype =
-    L.function_type void_t [| i32_t |] in
+    L.function_type i32_t [| i32_t |] in
   let write_func : L.llvalue =
       L.declare_function "write" write_t the_module in
   let addPage_t : L.lltype =
