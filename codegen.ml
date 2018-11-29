@@ -54,6 +54,14 @@ let translate (globals, functions) =
       L.function_type i32_t [| i32_t |] in
   let hello_func : L.llvalue =
       L.declare_function "hello" hello_t the_module in
+  let write_t : L.lltype =
+    L.function_type i32_t [| i32_t |] in
+  let write_func : L.llvalue =
+      L.declare_function "write" write_t the_module in
+  let addPage_t : L.lltype =
+      L.function_type i32_t [| i32_t |] in
+  let addPage_func : L.llvalue =
+      L.declare_function "addPage" addPage_t the_module in
 
   (* Define each function (arguments and return type) so we can 
      call it even before we've created its body *)
