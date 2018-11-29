@@ -63,7 +63,7 @@ int  addPage( int num){
 }
 
 
-int write( int num){
+void write( int num){
     const char *text = "Hello World";
     HPDF_Page_TextOut (currentPage, currentX, 500, text);
 
