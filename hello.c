@@ -73,8 +73,8 @@ void endDoc(){
 
 }
 
-void write(char* text){
-    const char *page_title = "Hello World";
+void write(){
+    const char *text = "Hello World";
     HPDF_Page_TextOut (currentPage, currentX, 500, text);
 }
 
