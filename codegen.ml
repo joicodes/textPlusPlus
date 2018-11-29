@@ -161,7 +161,13 @@ let translate (globals, functions) =
           | A.Not                  -> L.build_not) e' "tmp" builder
 
       | SCall ("hello", [e]) ->
-	  L.build_call hello_func [| (expr builder e) |] "hello" builder
+    L.build_call hello_func [| (expr builder e) |] "hello" builder
+    
+    | SCall ("write", [e]) ->
+    L.build_call write_func [| (expr builder e) |] "write" builder
+    
+    | SCall ("addPage", [e]) ->
+	  L.build_call addPage_func [| (expr builder e) |] "addPage" builder
 
       | SCall (f, args) ->
          let (fdef, fdecl) = StringMap.find f function_decls in
