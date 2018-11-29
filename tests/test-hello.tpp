@@ -1,5 +1,4 @@
-def int main()
+def void start()
 {
-  hello(0);
-  return 0;
+  return;
 }

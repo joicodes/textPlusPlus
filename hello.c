@@ -28,8 +28,11 @@ HPDF_REAL pageWidth;
 HPDF_REAL currentX;
 HPDF_REAL currentY;
 
+extern void start();
+
 jmp_buf env;
 
+void
 error_handler (HPDF_STATUS   error_no,
                HPDF_STATUS   detail_no,
                void         *user_data)
@@ -98,9 +101,8 @@ void write(char* text){
 
 
 
-int hello(int argc)
+int main(int argc)
 {
-
 	const char *page_title = "Hello World";
 
 	pdf = HPDF_New(NULL, NULL); //NULL -> void * user data used for error handling
@@ -110,19 +112,20 @@ int hello(int argc)
         return 1;
     }
 
-    font = HPDF_GetFont (pdf, "Helvetica", NULL);
-    page = HPDF_AddPage (pdf); //creates new page and adds it to end of document
+    currentFont = HPDF_GetFont (pdf, "Helvetica", NULL);
+    currentPage = HPDF_AddPage (pdf); //creates new page and adds it to end of document
 
 
-    HPDF_Page_SetFontAndSize (page, font, 24); 
+    HPDF_Page_SetFontAndSize (currentPage, currentFont, 24); 
 
-    HPDF_Page_BeginText (page); //begins text object and sets text position to (0, 0)
-
-
-    HPDF_Page_TextOut (page, 60, 500, page_title); // prints text in specified position
+    HPDF_Page_BeginText (currentPage); //begins text object and sets text position to (0, 0)
 
 
-    HPDF_Page_EndText (page); //ends a text object
+    HPDF_Page_TextOut (currentPage, 60, 500, page_title); // prints text in specified position
+
+    start();
+
+    HPDF_Page_EndText (currentPage); //ends a text object
 
     /* save the document to a file */
     HPDF_SaveToFile (pdf, "text.pdf");
