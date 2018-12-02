@@ -79,10 +79,16 @@ int  addPage( int num){
 
 int write( char * text){
     const char *sample = "Hello World";
+    HPDF_Rect rect;
+
+    rect.left = 25;
+    rect.top = pageHeight - 25;
+    rect.right = pageWidth - 25;
+    rect.bottom = 0;
 
     HPDF_Page_BeginText(currentPage);
-    textWidth = HPDF_Page_TextWidth(currentPage, text);
-    HPDF_Page_TextOut (currentPage, currentX, currentY-currentSize, text);
+    HPDF_Page_TextRect(currentPage, rect.left, rect.top, rect.right, rect.bottom, text, HPDF_TALIGN_LEFT, NULL);
+    
     HPDF_Page_EndText(currentPage);
 
     return 0;
