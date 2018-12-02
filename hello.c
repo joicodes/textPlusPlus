@@ -13,6 +13,7 @@ HPDF_Page firstPage;
 HPDF_Page currentPage;
 int pageNumber;
 
+float textWidth;
 
 HPDF_Font defaultFont;
 HPDF_Font currentFont;
@@ -66,6 +67,7 @@ int  addPage( int num){
     pageNumber = pageNumber + 1;
 
     HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+    HPDF_Page_SetLineWidth(currentPage, 1);
 
     currentX = 0;
     currentY = pageHeight;
@@ -79,6 +81,7 @@ int write( char * text){
     const char *sample = "Hello World";
 
     HPDF_Page_BeginText(currentPage);
+    textWidth = HPDF_Page_TextWidth(currentPage, text);
     HPDF_Page_TextOut (currentPage, currentX, currentY-currentSize, text);
     HPDF_Page_EndText(currentPage);
 
@@ -221,12 +224,56 @@ int changeFontSize ( int newSize ){
 }
 
 
-/*int getTextWidth( char * text) {
 
-	int tw;
-	tw = (int) HPDF_Page_TextWidth(currentPage, text);
-	return tw;
-}*/
+
+int drawLine( int num){
+
+	int startX;
+	int endX;
+	int startY;
+	int endY;
+
+	// sample input
+	startX = 10;
+	startY = 400;
+	endX = startX + 200;
+	endY = startY;
+	
+	HPDF_Page_MoveTo(currentPage, startX, startY);
+	HPDF_Page_LineTo(currentPage, endX, endY);
+	HPDF_Page_Stroke(currentPage);
+
+	return 0;
+
+}
+
+int drawRectangle( int num){
+	
+	// lower left point of rectangle	
+	int x;  
+	int y;
+
+	// rectangle dimensions
+	int height;
+	int width;
+
+
+	//sample input
+	x = 30;
+	y= 200;
+	width  = 100;
+	height = 100;
+
+	HPDF_Page_Rectangle(currentPage, x, y, width, height);
+	HPDF_Page_Stroke(currentPage);
+
+	return 0;
+}
+
+
+
+
+
 
 
 
@@ -273,6 +320,8 @@ int main(int argc)
 
     pageHeight = HPDF_Page_GetHeight(firstPage);
     pageWidth = HPDF_Page_GetWidth(firstPage);
+
+    HPDF_Page_SetLineWidth(firstPage, 1);
 
     currentX = 0;
     currentY = pageHeight;
