@@ -43,7 +43,8 @@ let check (globals, functions) =
 						("bold", Int);
 						("italic", Int);
                                                 ("regular", Int);
-                                                ("changeColor", String); ]
+                                                ("changeColor", String); 
+						("changeFontSize", Int);]
   in
 
   (* Add function name to symbol table *)
