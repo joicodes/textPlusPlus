@@ -56,6 +56,17 @@ let translate (globals, functions) =
       L.function_type i32_t [| i32_t |] in
   let bold_func : L.llvalue =
       L.declare_function "bold" bold_t the_module in
+      
+    let italic_t : L.lltype =
+      L.function_type i32_t [| i32_t |] in
+  let italic_func : L.llvalue =
+      L.declare_function "italic" italic_t the_module in
+      
+  let regular_t : L.lltype =
+      L.function_type i32_t [| i32_t |] in
+  let regular_func : L.llvalue =
+      L.declare_function "regular" regular_t the_module in
+      
   let write_t : L.lltype =
     L.function_type i32_t [| str_t |] in
   let write_func : L.llvalue =
@@ -165,7 +176,12 @@ let translate (globals, functions) =
 
       | SCall ("bold", [e]) ->
           L.build_call bold_func [| (expr builder e) |] "bold" builder
-    
+      | SCall ("italic", [e]) ->
+	  L.build_call italic_func [| (expr builder e) |] "italic" builder 
+	  
+      | SCall ("regular", [e]) ->
+	  L.build_call regular_func [| (expr builder e) |] "regular" builder 
+	  
     | SCall ("write", [e]) ->
     L.build_call write_func [| (expr builder e) |] "write" builder
     
