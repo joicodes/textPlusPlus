@@ -44,7 +44,8 @@ let check (globals, functions) =
 						("italic", Int);
                                                 ("regular", Int);
                                                 ("changeColor", String); 
-						("changeFontSize", Int);]
+						("changeFontSize", Int);
+						("getTextWidth", String);]
   in
 
   (* Add function name to symbol table *)
