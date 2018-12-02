@@ -1,5 +1,6 @@
 def void start()
 {
+
   italic(0);
   changeColor("blue");
    write("Helvetica Italic Page One!");
@@ -15,7 +16,6 @@ def void start()
   regular(0);
   write("Plain Ol' Helvetica Page Three");
   
-  addPage(0);
-  
+  addPage(0);   
   return;
 }
