@@ -32,6 +32,18 @@ extern void start();
 
 jmp_buf env;
 
+HPDF_Font helvetica = HPDF_GetFont(pdf, "Helvetica", NULL);
+HPDF_Font helveticaItalic = HPDF_GetFont(pdf, "Helvetica-Oblique", NULL);
+HPDF_Font helveticaBold = HPDF_GetFont(pdf, "Helvetica-Bold", NULL);
+	
+HPDF_Font times = HPDF_GetFont(pdf, "Times-Roman", NULL);
+HPDF_Font timesItalic = HPDF_GetFont(pdf, "Times-Italic", NULL);
+HPDF_Font timesBold = HPDF_GetFont(pdf, "Times-Bold", NULL);
+
+HPDF_Font courier = HPDF_GetFont(pdf, "Courier", NULL);
+HPDF_Font courierItalic = HPDF_GetFont(pdf, "Courier-Oblique", NULL);
+HPDF_Font courierBold = HPDF_GetFont(pdf, "Courier-Bold", NULL);
+
 // adding a comment
 void
 error_handler (HPDF_STATUS   error_no,
@@ -74,22 +86,6 @@ int write( char * num){
 
 int bold( int num ){
 
-
-	// Fonts
-
-	HPDF_Font helvetica = HPDF_GetFont(pdf, "Helvetica", NULL);
-	HPDF_Font helveticaItalic = HPDF_GetFont(pdf, "Helvetica-Oblique", NULL);
-	HPDF_Font helveticaBold = HPDF_GetFont(pdf, "Helvetica-Bold", NULL);
-	
-	HPDF_Font times = HPDF_GetFont(pdf, "Times-Roman", NULL);
-	HPDF_Font timesItalic = HPDF_GetFont(pdf, "Times-Italic", NULL);
-	HPDF_Font timesBold = HPDF_GetFont(pdf, "Times-Bold", NULL);
-
-	HPDF_Font courier = HPDF_GetFont(pdf, "Courier", NULL);
-	HPDF_Font courierItalic = HPDF_GetFont(pdf, "Courier-Oblique", NULL);
-	HPDF_Font courierBold = HPDF_GetFont(pdf, "Courier-Bold", NULL);
-
-	
 	// Helvetica Bold
 
 	if ((currentFont == helvetica) || (currentFont == helveticaItalic)){
@@ -130,6 +126,90 @@ int bold( int num ){
 
 }
 
+int italic( int num ){
+
+	// Helvetica Italic
+
+	if ((currentFont == helvetica) || (currentFont == helveticaBold)){
+		
+		HPDF_Page_EndText(currentPage);
+
+		currentFont = helveticaItalic;
+		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+
+		HPDF_Page_BeginText(currentPage);	
+	}
+	
+	// Times Italic
+
+	if ((currentFont == times) || (currentFont == timesBold)){
+
+		HPDF_Page_EndText(currentPage);
+
+		currentFont = timesItalic;
+		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+
+		HPDF_Page_BeginText(currentPage);
+	}
+
+	// Courier Italic
+
+	if ((currentFont == courier) || (currentFont == courierBold)){
+
+		HPDF_Page_EndText(currentPage);
+
+		currentFont = courierItalic;
+		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+
+		HPDF_Page_BeginText(currentPage);
+	}
+
+	return 0;
+
+}
+
+
+int regular( int num ){
+
+	// Helvetica 
+
+	if ((currentFont == helveticaItalic) || (currentFont == helveticaBold)){
+		
+		HPDF_Page_EndText(currentPage);
+
+		currentFont = helvetica;
+		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+
+		HPDF_Page_BeginText(currentPage);	
+	}
+	
+	// Times Italic
+
+	if ((currentFont == timesItalic) || (currentFont == timesBold)){
+
+		HPDF_Page_EndText(currentPage);
+
+		currentFont = times;
+		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+
+		HPDF_Page_BeginText(currentPage);
+	}
+
+	// Courier Italic
+
+	if ((currentFont == courierItalic) || (currentFont == courierBold)){
+
+		HPDF_Page_EndText(currentPage);
+
+		currentFont = courier;
+		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+
+		HPDF_Page_BeginText(currentPage);
+	}
+
+	return 0;
+
+}
 
 
 
