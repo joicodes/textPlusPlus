@@ -71,6 +71,12 @@ let translate (globals, functions) =
     L.function_type i32_t [| str_t |] in
   let write_func : L.llvalue =
       L.declare_function "write" write_t the_module in
+ 
+   let changeColor_t : L.lltype =
+    L.function_type i32_t [| str_t |] in
+  let changeColor_func : L.llvalue =
+      L.declare_function "changeColor" changeColor_t the_module in
+      
   let addPage_t : L.lltype =
       L.function_type i32_t [| i32_t |] in
   let addPage_func : L.llvalue =
@@ -184,6 +190,9 @@ let translate (globals, functions) =
 	  
     | SCall ("write", [e]) ->
     L.build_call write_func [| (expr builder e) |] "write" builder
+    
+   | SCall ("changeColor", [e]) ->
+    L.build_call changeColor_func [| (expr builder e) |] "changeColor" builder
     
     | SCall ("addPage", [e]) ->
 	  L.build_call addPage_func [| (expr builder e) |] "addPage" builder
