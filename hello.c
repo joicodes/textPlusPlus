@@ -188,7 +188,7 @@ int regular( int num ){
 }
 
 
-/* int changeColor( char * colorName ){
+int changeColor( char * colorName ){
 	
 	if (strcmp( colorName, "black") == 0){
 		HPDF_Page_SetRGBFill(currentPage, 0.0, 0.0, 0.0);
@@ -205,7 +205,7 @@ int regular( int num ){
 	}
 
 	return 0;
-} */
+} 
 
 
 int main(int argc)

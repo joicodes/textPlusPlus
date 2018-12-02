@@ -42,7 +42,8 @@ let check (globals, functions) =
                                                 ("write", String);
 						("bold", Int);
 						("italic", Int);
-                                                ("regular", Int); ]
+                                                ("regular", Int);
+                                                ("changeColor", String); ]
   in
 
   (* Add function name to symbol table *)
