@@ -188,6 +188,25 @@ int regular( int num ){
 }
 
 
+/* int changeColor( char * colorName ){
+	
+	if (strcmp( colorName, "black") == 0){
+		HPDF_Page_SetRGBFill(currentPage, 0.0, 0.0, 0.0);
+	}
+
+	if (strcmp( colorName, "red") == 0){
+		HPDF_Page_SetRGBFill(currentPage, 1.0, 0.0, 0.0);
+	}
+	if (strcmp( colorName, "green") == 0){
+		HPDF_Page_SetRGBFill(currentPage, 0.0, 1.0, 0.0);
+	}
+	if (strcmp( colorName, "blue") == 0){
+		HPDF_Page_SetRGBFill(currentPage, 0.0, 0.0, 1.0);
+	}
+
+	return 0;
+} */
+
 
 int main(int argc)
 {
@@ -220,6 +239,10 @@ int main(int argc)
     currentPage = firstPage;
     pageNumber = 1;
 
+
+    // Sets default color, size, and font
+
+    //HPDF_Page_SetRGBFill(firstPage, 0.0, 0.0, 0.0);
     defaultFont = HPDF_GetFont (pdf, "Helvetica", NULL);
     currentFont = defaultFont;
     defaultSize = 12;
