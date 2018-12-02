@@ -17,6 +17,8 @@ def void start()
   regular(0);
   write("Plain Ol' Helvetica Page Three");
   
-  addPage(0);  
+  addPage(0);
+  drawLine(0);
+  drawRectangle(0);  
   return;
 }
