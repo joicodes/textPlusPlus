@@ -44,7 +44,7 @@ HPDF_Font courier;
 HPDF_Font courierItalic;
 HPDF_Font courierBold;
 
-// adding a comment
+
 void
 error_handler (HPDF_STATUS   error_no,
                HPDF_STATUS   detail_no,
@@ -206,6 +206,22 @@ int changeColor( char * colorName ){
 
 	return 0;
 } 
+
+
+
+int changeFontSize ( int newSize ){
+
+	// Note FIX PARAMETERS to char * newFont, int newSize, hard coding for now
+	char * newFont = "Times-Bold";
+
+	currentFont = HPDF_GetFont(pdf, newFont, NULL);
+	currentSize = newSize;
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+	return 0;
+}
+
+
+
 
 
 int main(int argc)

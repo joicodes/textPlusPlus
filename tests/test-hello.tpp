@@ -5,12 +5,13 @@ def void start()
    write("Helvetica Italic Page One!");
   
   addPage(0);
+  changeFontSize(50);
   changeColor("red");
   bold(0);
   write("Helvetica Bold Page Two");
   
   addPage(0);
-  changeColor("green");
+  changeFontSize(30);
   regular(0);
   write("Plain Ol' Helvetica Page Three");
   
