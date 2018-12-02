@@ -32,17 +32,17 @@ extern void start();
 
 jmp_buf env;
 
-HPDF_Font helvetica = HPDF_GetFont(pdf, "Helvetica", NULL);
-HPDF_Font helveticaItalic = HPDF_GetFont(pdf, "Helvetica-Oblique", NULL);
-HPDF_Font helveticaBold = HPDF_GetFont(pdf, "Helvetica-Bold", NULL);
+HPDF_Font helvetica;
+HPDF_Font helveticaItalic;
+HPDF_Font helveticaBold;
 	
-HPDF_Font times = HPDF_GetFont(pdf, "Times-Roman", NULL);
-HPDF_Font timesItalic = HPDF_GetFont(pdf, "Times-Italic", NULL);
-HPDF_Font timesBold = HPDF_GetFont(pdf, "Times-Bold", NULL);
+HPDF_Font times;
+HPDF_Font timesItalic;
+HPDF_Font timesBold;
 
-HPDF_Font courier = HPDF_GetFont(pdf, "Courier", NULL);
-HPDF_Font courierItalic = HPDF_GetFont(pdf, "Courier-Oblique", NULL);
-HPDF_Font courierBold = HPDF_GetFont(pdf, "Courier-Bold", NULL);
+HPDF_Font courier;
+HPDF_Font courierItalic;
+HPDF_Font courierBold;
 
 // adding a comment
 void
@@ -223,6 +223,22 @@ int main(int argc)
         printf ("error: cannot create PdfDoc object\n");
         return 1;
     } 
+	
+	
+   // Initializes Fonts
+	helvetica = HPDF_GetFont(pdf, "Helvetica", NULL);
+	helveticaItalic = HPDF_GetFont(pdf, "Helvetica-Oblique", NULL);
+	helveticaBold = HPDF_GetFont(pdf, "Helvetica-Bold", NULL);
+
+	times = HPDF_GetFont(pdf, "Times-Roman", NULL);
+	timesItalic = HPDF_GetFont(pdf, "Times-Italic", NULL);
+	timesBold = HPDF_GetFont(pdf, "Times-Bold", NULL);
+
+	courier = HPDF_GetFont(pdf, "Courier", NULL);
+	courierItalic = HPDF_GetFont(pdf, "Courier-Oblique", NULL);
+	courierBold = HPDF_GetFont(pdf, "Courier-Bold", NULL);
+
+  // Creates First Page
 
     firstPage = HPDF_AddPage(pdf); 
     currentPage = firstPage;
