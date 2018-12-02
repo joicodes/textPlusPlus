@@ -221,6 +221,12 @@ int changeFontSize ( int newSize ){
 }
 
 
+int getTextWidth( char * text) {
+
+	int tw;
+	tw = HPDF_Page_TextWidth(currentPage, text);
+	return tw;
+}
 
 
 
