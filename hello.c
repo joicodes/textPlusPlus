@@ -72,6 +72,65 @@ int write( char * num){
 }
 
 
+int bold( int num ){
+
+
+	// Fonts
+
+	HPDF_Font helvetica = HPDF_GetFont(pdf, "Helvetica", NULL);
+	HPDF_Font helveticaItalic = HPDF_GetFont(pdf, "Helvetica-Oblique", NULL);
+	HPDF_Font helveticaBold = HPDF_GetFont(pdf, "Helvetica-Bold", NULL);
+	
+	HPDF_Font times = HPDF_GetFont(pdf, "Times-Roman", NULL);
+	HPDF_Font timesItalic = HPDF_GetFont(pdf, "Times-Italic", NULL);
+	HPDF_Font timesBold = HPDF_GetFont(pdf, "Times-Bold", NULL);
+
+	HPDF_Font courier = HPDF_GetFont(pdf, "Courier", NULL);
+	HPDF_Font courierItalic = HPDF_GetFont(pdf, "Courier-Oblique", NULL);
+	HPDF_Font courierBold = HPDF_GetFont(pdf, "Courier-Bold", NULL);
+
+	
+	// Helvetica Bold
+
+	if ((currentFont == helvetica) || (currentFont == helveticaItalic)){
+		
+		HPDF_Page_EndText(currentPage);
+
+		currentFont = helveticaBold;
+		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+
+		HPDF_Page_BeginText(currentPage);	
+	}
+	
+	// Times Bold
+
+	if ((currentFont == times) || (currentFont == timesItalic)){
+
+		HPDF_Page_EndText(currentPage);
+
+		currentFont = timesBold;
+		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+
+		HPDF_Page_BeginText(currentPage);
+	}
+
+	// Courier Bold
+
+	if ((currentFont == courier) || (currentFont == courierItalic)){
+
+		HPDF_Page_EndText(currentPage);
+
+		currentFont = courierBold;
+		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+
+		HPDF_Page_BeginText(currentPage);
+	}
+
+	return 0;
+
+}
+
+
 
 
 int main(int argc)

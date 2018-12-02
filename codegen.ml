@@ -52,10 +52,10 @@ let translate (globals, functions) =
       in StringMap.add n (L.define_global n init the_module) m in
     List.fold_left global_var StringMap.empty globals in
 
-  let hello_t : L.lltype =
+  let bold_t : L.lltype =
       L.function_type i32_t [| i32_t |] in
-  let hello_func : L.llvalue =
-      L.declare_function "hello" hello_t the_module in
+  let bold_func : L.llvalue =
+      L.declare_function "bold" bold_t the_module in
   let write_t : L.lltype =
     L.function_type i32_t [| str_t |] in
   let write_func : L.llvalue =
@@ -163,8 +163,8 @@ let translate (globals, functions) =
 	  | A.Neg                  -> L.build_neg
           | A.Not                  -> L.build_not) e' "tmp" builder
 
-      | SCall ("hello", [e]) ->
-    L.build_call hello_func [| (expr builder e) |] "hello" builder
+      | SCall ("bold", [e]) ->
+          L.build_call bold_func [| (expr builder e) |] "bold" builder
     
     | SCall ("write", [e]) ->
     L.build_call write_func [| (expr builder e) |] "write" builder
