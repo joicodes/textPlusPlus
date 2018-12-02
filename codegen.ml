@@ -76,7 +76,12 @@ let translate (globals, functions) =
     L.function_type i32_t [| str_t |] in
   let changeColor_func : L.llvalue =
       L.declare_function "changeColor" changeColor_t the_module in
-      
+  
+    let changeFontSize_t : L.lltype =
+      L.function_type i32_t [| i32_t |] in
+  let changeFontSize_func : L.llvalue =
+      L.declare_function "changeFontSize" changeFontSize_t the_module in
+  
   let addPage_t : L.lltype =
       L.function_type i32_t [| i32_t |] in
   let addPage_func : L.llvalue =
@@ -196,6 +201,9 @@ let translate (globals, functions) =
     
     | SCall ("addPage", [e]) ->
 	  L.build_call addPage_func [| (expr builder e) |] "addPage" builder
+	  
+    | SCall ("changeFontSize", [e]) ->
+	  L.build_call changeFontSize_func [| (expr builder e) |] "changeFontSize" builder
 
       | SCall (f, args) ->
          let (fdef, fdecl) = StringMap.find f function_decls in
