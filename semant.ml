@@ -38,9 +38,11 @@ let check (globals, functions) =
       fname = name; 
       formals = [(ty, "x")];
       locals = []; body = [] } map
-    in List.fold_left add_bind StringMap.empty [ ("bold", Int);
+    in List.fold_left add_bind StringMap.empty [ ("addPage", Int);
                                                 ("write", String);
-                                                ("addPage", Int); ]
+						("bold", Int);
+						("italic", Int);
+                                                ("regular", Int); ]
   in
 
   (* Add function name to symbol table *)
