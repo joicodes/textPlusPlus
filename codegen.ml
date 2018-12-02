@@ -73,7 +73,7 @@ let translate (globals, functions) =
       L.declare_function "write" write_t the_module in
       
   let getTextWidth_t : L.lltype =
-    L.function_type i32_t [| str_t |] in
+    L.function_type float_t [| str_t |] in
   let getTextWidth_func : L.llvalue =
       L.declare_function "getTextWidth" getTextWidth_t the_module in
  
