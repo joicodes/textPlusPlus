@@ -91,6 +91,17 @@ let translate (globals, functions) =
       L.function_type i32_t [| i32_t |] in
   let addPage_func : L.llvalue =
       L.declare_function "addPage" addPage_t the_module in
+      
+    let drawLine_t : L.lltype =
+      L.function_type i32_t [| i32_t |] in
+  let drawLine_func : L.llvalue =
+      L.declare_function "drawLine" drawLine_t the_module in    
+      
+    let drawRectangle_t : L.lltype =
+      L.function_type i32_t [| i32_t |] in
+  let drawRectangle_func : L.llvalue =
+      L.declare_function "drawRectangle" drawLine_t the_module in         
+      
 
   (* Define each function (arguments and return type) so we can 
      call it even before we've created its body *)
@@ -212,7 +223,11 @@ let translate (globals, functions) =
 	  
     | SCall ("changeFontSize", [e]) ->
 	  L.build_call changeFontSize_func [| (expr builder e) |] "changeFontSize" builder
-
+    | SCall ("drawLine", [e]) ->
+	  L.build_call drawLine_func [| (expr builder e) |] "drawLine" builder
+    | SCall ("drawRectangle", [e]) ->
+	  L.build_call drawRectangle_func [| (expr builder e) |] "drawRectangle" builder	  
+	  
       | SCall (f, args) ->
          let (fdef, fdecl) = StringMap.find f function_decls in
 	 let llargs = List.rev (List.map (expr builder) (List.rev args)) in
