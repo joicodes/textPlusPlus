@@ -45,6 +45,8 @@ let check (globals, functions) =
                                                 ("regular", Int);
                                                 ("changeColor", String); 
 						("changeFontSize", Int);
+						("drawLine", Int);
+						("drawRectangle", Int);
 						("getTextWidth", String);]
   in
 
