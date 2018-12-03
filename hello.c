@@ -78,21 +78,44 @@ int  addPage( int num){
 
 
 int write( char * text){
-    const char *sample = "Hello World";
     HPDF_Rect rect;
 
-    rect.left = 25;
-    rect.top = pageHeight - 25;
+    //currentX = 0;
+    //currentY = pageHeight;
+
+    rect.left = currentX + 25; // 25 is for margins
+    rect.top = currentY - 25; // 25 is for margins
     rect.right = pageWidth - 25;
     rect.bottom = 0;
 
     HPDF_Page_BeginText(currentPage);
     HPDF_Page_TextRect(currentPage, rect.left, rect.top, rect.right, rect.bottom, text, HPDF_TALIGN_LEFT, NULL);
-    
+    HPDF_Page_EndText(currentPage);
+
+    //update currentX and currentY?
+
+    return 0;
+
+}
+
+int textOut( char * text){
+	HPDF_REAL x_pos = 50; //Harcoded for now
+	HPDF_REAL y_pos = 400; //Hardcoded for now
+
+    HPDF_Page_BeginText(currentPage);
+    HPDF_Page_SetFontAndSize (currentPage, times, 12);
+    HPDF_Page_TextRect(currentPage, x_pos, y_pos, pageWidth - 25, 0, text, HPDF_TALIGN_LEFT, NULL);
     HPDF_Page_EndText(currentPage);
 
     return 0;
 
+}
+
+int moveTo(int dummy){
+	//take page, x, and y position 
+	HPDF_Page_MoveTo(currentPage, currentX, currentY);
+
+	return 0;
 }
 
 

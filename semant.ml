@@ -47,7 +47,9 @@ let check (globals, functions) =
 						("changeFontSize", Int);
 						("drawLine", Int);
 						("drawRectangle", Int);
-						("getTextWidth", String);]
+						("getTextWidth", String);
+            ("textOut", String);
+            ("moveTo", Int)]
   in
 
   (* Add function name to symbol table *)

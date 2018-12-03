@@ -100,7 +100,15 @@ let translate (globals, functions) =
     let drawRectangle_t : L.lltype =
       L.function_type i32_t [| i32_t |] in
   let drawRectangle_func : L.llvalue =
-      L.declare_function "drawRectangle" drawLine_t the_module in         
+      L.declare_function "drawRectangle" drawLine_t the_module in 
+    let textOut_t : L.lltype =
+    L.function_type i32_t [| str_t |] in
+  let textOut_func : L.llvalue =
+      L.declare_function "textOut" textOut_t the_module in 
+    let moveTo_t : L.lltype =
+    L.function_type i32_t [| i32_t |] in
+  let moveTo_func : L.llvalue =
+      L.declare_function "moveTo" moveTo_t the_module in       
       
 
   (* Define each function (arguments and return type) so we can 
@@ -226,7 +234,11 @@ let translate (globals, functions) =
     | SCall ("drawLine", [e]) ->
 	  L.build_call drawLine_func [| (expr builder e) |] "drawLine" builder
     | SCall ("drawRectangle", [e]) ->
-	  L.build_call drawRectangle_func [| (expr builder e) |] "drawRectangle" builder	  
+	  L.build_call drawRectangle_func [| (expr builder e) |] "drawRectangle" builder
+    | SCall ("textOut", [e]) ->
+    L.build_call textOut_func [| (expr builder e) |] "textOut" builder
+    | SCall ("moveTo", [e]) ->
+    L.build_call moveTo_func [| (expr builder e) |] "moveTo" builder	  
 	  
       | SCall (f, args) ->
          let (fdef, fdecl) = StringMap.find f function_decls in

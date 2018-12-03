@@ -16,7 +16,9 @@ def void start()
   changeFontSize(45);
   changeColor("red");
   bold(0);
-  write("Helvetica Bold Page Two");
+  textOut("One of the lessons that I grew up with was to always stay true to yourself and never let what somebody else says distract you from your goals. And so when I hear about negative and false attacks, I really don't invest any energy in them, because I know who I am.");
+  moveTo(0);
+
   
   addPage(0);
   changeFontSize(30);
