@@ -56,7 +56,7 @@ let check (globals, functions) =
         locals = []; body = [] }
 
         (StringMap.add "changeFontSize"
-    { typ = Void; fname = "changeFontSize"; formals = [];
+    { typ = Void; fname = "changeFontSize"; formals = [(Int, "x"); (Int, "y")];
         locals = []; body = [] }
 
         (StringMap.add "drawLine"
