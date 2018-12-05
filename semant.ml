@@ -36,19 +36,19 @@ let check (globals, functions) =
     let built_in_decls =  
     
     StringMap.add "addPage"
-     { typ = Void; fname = "addPage"; formals = [(Int, "x")];
+     { typ = Void; fname = "addPage"; formals = [];
        locals = []; body = [] }
 
        (StringMap.add "bold"
-     { typ = Void; fname = "bold"; formals = [(Int, "x")];
+     { typ = Void; fname = "bold"; formals = [];
        locals = []; body = [] }
 
         (StringMap.add "italic"
-    { typ = Void; fname = "italic"; formals = [(Int, "x")];
+    { typ = Void; fname = "italic"; formals = [];
         locals = []; body = [] }
 
         (StringMap.add "regular"
-    { typ = Void; fname = "regular"; formals = [(Int, "x")];
+    { typ = Void; fname = "regular"; formals = [];
         locals = []; body = [] }
 
         (StringMap.add "changeColor"
