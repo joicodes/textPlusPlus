@@ -241,7 +241,7 @@ int changeColor( char * colorName ){
 
 
 
-int changeFontSize (char* fnt, int newSize ){
+int changeFontSize (char* ft, int newSize ){
 
 	// Note FIX PARAMETERS to char * newFont, int newSize, hard coding for now
 	char * newFont = ft;
