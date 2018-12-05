@@ -241,10 +241,10 @@ int changeColor( char * colorName ){
 
 
 
-int changeFontSize (char* ft, int newSize ){
+int changeFontSize (int ft, int newSize ){
 
 	// Note FIX PARAMETERS to char * newFont, int newSize, hard coding for now
-	char * newFont = ft;
+	char * newFont = "Courier";
 
 	currentFont = HPDF_GetFont(pdf, newFont, NULL);
 	currentSize = newSize;
