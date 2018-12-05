@@ -57,7 +57,7 @@ error_handler (HPDF_STATUS   error_no,
 }
 
 
-int  addPage(void){
+int  addPage(){
 
     HPDF_Page newPage;
     newPage = HPDF_AddPage(pdf);
@@ -119,7 +119,7 @@ int moveTo(int dummy){
 }
 
 
-int bold( int num ){
+int bold( ){
 
 	// Helvetica Bold
 
@@ -154,7 +154,7 @@ int bold( int num ){
 
 }
 
-int italic( int num ){
+int italic( ){
 
 	// Helvetica Italic
 
@@ -186,7 +186,7 @@ int italic( int num ){
 }
 
 
-int regular( int num ){
+int regular( ){
 
 	// Helvetica 
 
@@ -241,10 +241,10 @@ int changeColor( char * colorName ){
 
 
 
-int changeFontSize ( int newSize ){
+int changeFontSize (char* fnt, int newSize ){
 
 	// Note FIX PARAMETERS to char * newFont, int newSize, hard coding for now
-	char * newFont = "Times-Bold";
+	char * newFont = ft;
 
 	currentFont = HPDF_GetFont(pdf, newFont, NULL);
 	currentSize = newSize;
