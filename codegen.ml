@@ -83,7 +83,7 @@ let translate (globals, functions) =
       L.declare_function "changeColor" changeColor_t the_module in
   
     let changeFontSize_t : L.lltype =
-      L.function_type i32_t [| str_t; i32_t |] in
+      L.function_type i32_t [| i32_t; i32_t |] in
   let changeFontSize_func : L.llvalue =
       L.declare_function "changeFontSize" changeFontSize_t the_module in
   
