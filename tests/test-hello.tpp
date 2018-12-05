@@ -1,7 +1,7 @@
 def void start()
 {
   
-  italic(0);
+  italic();
   changeColor("blue");
   write("When I was three and Bailey four, we had arrived in the musty little town, wearing tags on our wristswhich instructed-'To Whom It May Concern'-that we were Marguerite and Bailey Johnson Jr., from Long Beach, California, en route to Stamps, Arkansas, c/o Mrs. Annie Henderson.
   Our parents had decided to put an end to their calamitous marriage, and Father shipped us home to his mother. A porter had been charged with our welfare-he got off the train the next day in Arizona-and our tickets were pinned to my brother's inside coat pocket.
@@ -12,21 +12,21 @@ def void start()
   Early in the century, Momma (we soon stopped calling her Grandmother) sold lunches to the sawmen in the lumberyard (east Stamps) and the seedmen at the cotton gin (west Stamps). Her crisp meat pies and cool lemonade, when joined to her miraculous ability to be in two places at the same time, assured her business success. From being a mobile lunch counter, she set up a stand between the two points of fiscal interest and supplied the workers' needs for a few years. Then she had the Store built in the heart of the Negro area. Over the years it became the lay center of activities in town. On Saturdays, barbers sat their customers in the shade on the porch of the Store, and troubadours on their ceaseless crawlings through the South leaned across its benches and sang their sad songs of The Brazos while they played juice harps and cigarbox guitars.");
    
 
-  addPage(0);
+  addPage();
   changeFontSize(45);
   changeColor("red");
-  bold(0);
+  bold();
   textOut("One of the lessons that I grew up with was to always stay true to yourself and never let what somebody else says distract you from your goals. And so when I hear about negative and false attacks, I really don't invest any energy in them, because I know who I am.");
   moveTo(0);
 
   
-  addPage(0);
+  addPage();
   changeFontSize(30);
-  regular(0);
+  regular();
   write("Plain Ol' Helvetica Page Three");
   
-  addPage(0);
-  drawLine(0);
+  addPage();
+  drawLine();
   drawRectangle(0);  
   return;
 }
