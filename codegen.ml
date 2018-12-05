@@ -53,17 +53,17 @@ let translate (globals, functions) =
     List.fold_left global_var StringMap.empty globals in
 
   let bold_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
+      L.function_type i32_t [|  |] in
   let bold_func : L.llvalue =
       L.declare_function "bold" bold_t the_module in
       
     let italic_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
+      L.function_type i32_t [|  |] in
   let italic_func : L.llvalue =
       L.declare_function "italic" italic_t the_module in
       
   let regular_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
+      L.function_type i32_t [|  |] in
   let regular_func : L.llvalue =
       L.declare_function "regular" regular_t the_module in
       
@@ -88,7 +88,7 @@ let translate (globals, functions) =
       L.declare_function "changeFontSize" changeFontSize_t the_module in
   
   let addPage_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
+      L.function_type i32_t [|  |] in
   let addPage_func : L.llvalue =
       L.declare_function "addPage" addPage_t the_module in
       
