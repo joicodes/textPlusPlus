@@ -227,7 +227,7 @@ let translate (globals, functions) =
     L.build_call changeColor_func [| (expr builder e) |] "changeColor" builder
     
     | SCall ("addPage", [e]) ->
-	  L.build_call addPage_func [| (expr builder e) |] "addPage" builder
+	  L.build_call addPage_func [| (e) |] "addPage" builder
 	  
     | SCall ("changeFontSize", [e]) ->
 	  L.build_call changeFontSize_func [| (expr builder e) |] "changeFontSize" builder
