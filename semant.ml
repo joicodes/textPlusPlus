@@ -79,9 +79,9 @@ let check (globals, functions) =
      { typ = Void; fname = "textOut"; formals = [(String, "x")];
         locals = []; body = [] }
 	
-        (StringMap.add "moveTo"
+        ( StringMap.add "moveTo"
      { typ = Void; fname = "moveTo"; formals = [(Int, "x")];
-        locals = []; body = [] }
+        locals = []; body = [] } StringMap.empty
 
      )))))))))))
   
