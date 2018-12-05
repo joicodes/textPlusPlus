@@ -32,24 +32,59 @@ let check (globals, functions) =
   (**** Check functions ****)
 
   (* Collect function declarations for built-in functions: no bodies *)
-  let built_in_decls = 
-    let add_bind map (name, ty) = StringMap.add name {
-      typ = Void;
-      fname = name; 
-      formals = [(ty, "x")];
-      locals = []; body = [] } map
-    in List.fold_left add_bind StringMap.empty [ ("addPage", Int);
-                                                ("write", String);
-						("bold", Int);
-						("italic", Int);
-                                                ("regular", Int);
-                                                ("changeColor", String); 
-						("changeFontSize", Int);
-						("drawLine", Int);
-						("drawRectangle", Int);
-						("getTextWidth", String);
-            ("textOut", String);
-            ("moveTo", Int)]
+   
+    let built_in_decls =  
+    
+    StringMap.add "addPage"
+     { typ = Void; fname = "addPage"; formals = [(Int, "x")];
+       body = [] }
+
+       (StringMap.add "bold"
+     { typ = Void; fname = "bold"; formals = [(Int, "x")];
+       body = [] }
+
+        (StringMap.add "italic"
+    { typ = Void; fname = "italic"; formals = [(Int, "x")];
+        body = [] }
+
+        (StringMap.add "regular"
+    { typ = Void; fname = "regular"; formals = [(Int, "x")];
+        body = [] }
+
+        (StringMap.add "changeColor"
+    { typ = Void; fname = "changeColor"; formals = [(String, "x")];
+        body = [] }
+
+        (StringMap.add "changeFontSize"
+    { typ = Void; fname = "changeFontSize"; formals = [(Int, "x")];
+        body = [] }
+
+        (StringMap.add "drawLine"
+    { typ = Void; fname = "drawLine"; formals = [(Int, "x")];
+        body = [] }
+
+        (StringMap.add "drawRectangle"
+     { typ = Void; fname = "drawRectangle"; formals = [(Int, "x")];
+        body = [] }
+
+        (StringMap.add "getTextWidth"
+     { typ = Void; fname = "getTextWidth"; formals = [(String, "x")];
+        body = [] }
+
+        (StringMap.add "write"
+     { typ = Void; fname = "write"; formals = [(String, "x")];
+        body = [] }
+	
+        (StringMap.add "textOut"
+     { typ = Void; fname = "textOut"; formals = [(String, "x")];
+        body = [] }
+	
+        (StringMap.add "moveTo"
+     { typ = Void; fname = "moveTo"; formals = [(Int, "x")];
+        body = [] }
+
+     )))))))))))
+  
   in
 
   (* Add function name to symbol table *)
