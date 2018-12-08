@@ -56,7 +56,7 @@ let check (globals, functions) =
         locals = []; body = [] }
 
         (StringMap.add "changeFontSize"
-    { typ = Void; fname = "changeFontSize"; formals = [(Int, "x"); (Int, "y")];
+    { typ = Void; fname = "changeFontSize"; formals = [(String, "x"); (Int, "y")];
         locals = []; body = [] }
 
         (StringMap.add "drawLine"
@@ -76,11 +76,11 @@ let check (globals, functions) =
         locals = []; body = [] }
 	
         (StringMap.add "textOut"
-     { typ = Void; fname = "textOut"; formals = [(String, "x")];
+     { typ = Void; fname = "textOut"; formals = [(String, "x"); (Int, "y"); (Int, "z")];
         locals = []; body = [] }
 	
         ( StringMap.add "moveTo"
-     { typ = Void; fname = "moveTo"; formals = [(Int, "x")];
+     { typ = Void; fname = "moveTo"; formals = [(Int, "x"); (Int, "y")];
         locals = []; body = [] } StringMap.empty
 
      )))))))))))

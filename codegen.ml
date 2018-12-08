@@ -83,7 +83,7 @@ let translate (globals, functions) =
       L.declare_function "changeColor" changeColor_t the_module in
   
     let changeFontSize_t : L.lltype =
-      L.function_type i32_t [| i32_t; i32_t |] in
+      L.function_type i32_t [| str_t; i32_t |] in
   let changeFontSize_func : L.llvalue =
       L.declare_function "changeFontSize" changeFontSize_t the_module in
   
@@ -102,11 +102,11 @@ let translate (globals, functions) =
   let drawRectangle_func : L.llvalue =
       L.declare_function "drawRectangle" drawLine_t the_module in 
     let textOut_t : L.lltype =
-    L.function_type i32_t [| str_t |] in
+    L.function_type i32_t [| str_t ; i32_t ; i32_t|] in
   let textOut_func : L.llvalue =
       L.declare_function "textOut" textOut_t the_module in 
     let moveTo_t : L.lltype =
-    L.function_type i32_t [| i32_t |] in
+    L.function_type i32_t [| i32_t; i32_t |] in
   let moveTo_func : L.llvalue =
       L.declare_function "moveTo" moveTo_t the_module in       
       
@@ -229,16 +229,16 @@ let translate (globals, functions) =
     | SCall ("addPage", [e]) ->
 	  L.build_call addPage_func [| |] "addPage" builder
 	  
-    | SCall ("changeFontSize", [e]) ->
-	  L.build_call changeFontSize_func [| (expr builder e) |] "changeFontSize" builder
+    | SCall ("changeFontSize", [e ; y]) ->
+	  L.build_call changeFontSize_func [| (expr builder e); (expr builder y)  |] "changeFontSize" builder
     | SCall ("drawLine", [e]) ->
 	  L.build_call drawLine_func [| (expr builder e) |] "drawLine" builder
     | SCall ("drawRectangle", [e]) ->
 	  L.build_call drawRectangle_func [| (expr builder e) |] "drawRectangle" builder
-    | SCall ("textOut", [e]) ->
-    L.build_call textOut_func [| (expr builder e) |] "textOut" builder
-    | SCall ("moveTo", [e]) ->
-    L.build_call moveTo_func [| (expr builder e) |] "moveTo" builder	  
+    | SCall ("textOut", [e; y; z]) ->
+    L.build_call textOut_func [| (expr builder e); (expr builder y); (expr builder z) |] "textOut" builder
+    | SCall ("moveTo", [e; y]) ->
+    L.build_call moveTo_func [| (expr builder e); (expr builder y)|] "moveTo" builder	  
 	  
       | SCall (f, args) ->
          let (fdef, fdecl) = StringMap.find f function_decls in

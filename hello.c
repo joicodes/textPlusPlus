@@ -57,7 +57,7 @@ error_handler (HPDF_STATUS   error_no,
 }
 
 
-int  addPage(void){
+int  addPage(){
 
     HPDF_Page newPage;
     newPage = HPDF_AddPage(pdf);
@@ -98,9 +98,9 @@ int write( char * text){
 
 }
 
-int textOut( char * text){
-	HPDF_REAL x_pos = 50; //Harcoded for now
-	HPDF_REAL y_pos = 400; //Hardcoded for now
+int textOut( char * text, int x, int y){
+	HPDF_REAL x_pos = x; //Harcoded for now 50
+	HPDF_REAL y_pos = y; //Hardcoded for now 400
 
     HPDF_Page_BeginText(currentPage);
     HPDF_Page_SetFontAndSize (currentPage, times, 12);
@@ -111,9 +111,11 @@ int textOut( char * text){
 
 }
 
-int moveTo(int dummy){
+int moveTo(int x , int y){
 	//take page, x, and y position 
-	HPDF_Page_MoveTo(currentPage, currentX, currentY);
+	HPDF_REAL x_pos = x; //Harcoded for now 50
+	HPDF_REAL y_pos = y;
+	HPDF_Page_MoveTo(currentPage, x_pos, y_pos);
 
 	return 0;
 }
@@ -241,12 +243,12 @@ int changeColor( char * colorName ){
 
 
 
-int changeFontSize (int ft, int newSize ){
+int changeFontSize (char * font, int newSize ){
 
 	// Note FIX PARAMETERS to char * newFont, int newSize, hard coding for now
-	char * newFont = "Courier";
+	//char * newFont = "Courier";
 
-	currentFont = HPDF_GetFont(pdf, newFont, NULL);
+	currentFont = HPDF_GetFont(pdf, font, NULL);
 	currentSize = newSize;
 	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	return 0;
