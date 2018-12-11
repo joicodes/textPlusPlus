@@ -36,8 +36,36 @@ let check (globals, functions) =
     let built_in_decls =  
     
     StringMap.add "addPage"
-     { typ = Void; fname = "addPage"; formals = [];
+     { typ = Int; fname = "addPage"; formals = [];
        locals = []; body = [] }
+
+
+
+       (StringMap.add "left"
+     { typ = Void; fname = "left"; formals = [];
+       locals = []; body = [] }
+
+       (StringMap.add "right"
+     { typ = Void; fname = "right"; formals = [];
+       locals = []; body = [] }
+
+       (StringMap.add "center"
+     { typ = Void; fname = "center"; formals = [];
+       locals = []; body = [] }
+
+       (StringMap.add "write"
+       { typ = Void; fname = "write"; formals = [(String, "x")];
+          locals = []; body = [] }
+
+        (StringMap.add "textOut"
+      { typ = Void; fname = "textOut"; formals = [(String, "x"); (Int, "y"); (Int, "z")];
+        locals = []; body = [] }
+
+        ( StringMap.add "moveTo"
+      { typ = Void; fname = "moveTo"; formals = [(Int, "x"); (Int, "y")];
+        locals = []; body = [] } 
+  
+
 
        (StringMap.add "bold"
      { typ = Void; fname = "bold"; formals = [];
@@ -52,38 +80,42 @@ let check (globals, functions) =
         locals = []; body = [] }
 
         (StringMap.add "changeColor"
-    { typ = Void; fname = "changeColor"; formals = [(Int, "x"); (Int, "y"); (Int, "z")];
+    { typ = Void; fname = "changeColor"; formals = [(Float, "x"); (Float, "y"); (Float, "z")];
         locals = []; body = [] }
 
         (StringMap.add "changeFontSize"
     { typ = Void; fname = "changeFontSize"; formals = [(String, "x"); (Int, "y")];
         locals = []; body = [] }
 
+
+
         (StringMap.add "drawLine"
-    { typ = Void; fname = "drawLine"; formals = [(Int, "x")];
+    { typ = Void; fname = "drawLine"; formals = [(Int, "x"); (Int, "y"); (Int, "z"); (Int, "a")];
         locals = []; body = [] }
 
         (StringMap.add "drawRectangle"
-     { typ = Void; fname = "drawRectangle"; formals = [(Int, "x")];
+     { typ = Void; fname = "drawRectangle"; formals = [(Int, "x"); (Int, "y"); (Int, "z"); (Int, "a")];
         locals = []; body = [] }
+
+
+
+        (StringMap.add "getPageNumber"
+        { typ = Void; fname = "getPageNumber"; formals = [];
+           locals = []; body = [] }
 
         (StringMap.add "getTextWidth"
      { typ = Void; fname = "getTextWidth"; formals = [(String, "x")];
         locals = []; body = [] }
 
-        (StringMap.add "write"
-     { typ = Void; fname = "write"; formals = [(String, "x")];
+        (StringMap.add "getPageHeight"
+     { typ = Void; fname = "getPageHeight"; formals = [];
         locals = []; body = [] }
-	
-        (StringMap.add "textOut"
-     { typ = Void; fname = "textOut"; formals = [(String, "x"); (Int, "y"); (Int, "z")];
-        locals = []; body = [] }
-	
-        ( StringMap.add "moveTo"
-     { typ = Void; fname = "moveTo"; formals = [(Int, "x"); (Int, "y")];
+
+        (StringMap.add "getPageWidth"
+     { typ = Void; fname = "getPageWidth"; formals = [];
         locals = []; body = [] } StringMap.empty
 
-     )))))))))))
+     )))))))))))))))))
   
   in
 

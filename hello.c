@@ -227,7 +227,7 @@ int regular(){
 	return 0;
 }
 
-int changeColor( int red, int green, int blue){
+int changeColor( float red, float green, float blue){
 
 	/* sets the RGB values for the font */
 	HPDF_Page_SetRGBFill(currentPage, red, green, blue);
