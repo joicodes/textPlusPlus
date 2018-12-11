@@ -36,7 +36,7 @@ let check (globals, functions) =
     let built_in_decls =  
     
     StringMap.add "addPage"
-     { typ = Int; fname = "addPage"; formals = [];
+     { typ = Void; fname = "addPage"; formals = [];
        locals = []; body = [] }
 
        (StringMap.add "bold"
