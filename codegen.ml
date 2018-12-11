@@ -256,11 +256,11 @@ let translate (globals, functions) =
     | SCall ("addPage", []) ->
       L.build_call addPage_func [| |] "addPage" builder
     
-    | SCall ("left", [e]) ->
+    | SCall ("left", []) ->
       L.build_call left_func [| |] "left" builder
-    | SCall ("right", [e]) ->
+    | SCall ("right", []) ->
       L.build_call right_func [| |] "right" builder
-    | SCall ("center", [e]) ->
+    | SCall ("center", []) ->
       L.build_call center_func [| |] "center" builder
 
     | SCall ("write", [e]) ->
@@ -270,11 +270,11 @@ let translate (globals, functions) =
     | SCall ("moveTo", [e; y]) ->
       L.build_call moveTo_func [| (expr builder e); (expr builder y)|] "moveTo" builder	  
 
-    | SCall ("bold", [e]) ->
+    | SCall ("bold", []) ->
       L.build_call bold_func [|  |] "bold" builder
-    | SCall ("italic", [e]) ->
+    | SCall ("italic", []) ->
       L.build_call italic_func [|  |] "italic" builder 
-    | SCall ("regular", [e]) ->
+    | SCall ("regular", []) ->
       L.build_call regular_func [|  |] "regular" builder 
     | SCall ("changeColor", [e; y; z]) ->
       L.build_call changeColor_func [| (expr builder e); (expr builder y); (expr builder z) |] "changeColor" builder
@@ -286,13 +286,13 @@ let translate (globals, functions) =
     | SCall ("drawRectangle", [e; y; z; a]) ->
       L.build_call drawRectangle_func [| (expr builder e); (expr builder y); (expr builder z); (expr builder a) |] "drawRectangle" builder
   
-    | SCall ("getPageNumber", [e]) ->
+    | SCall ("getPageNumber", []) ->
       L.build_call getPageNumber_func [| |] "getPageNumber" builder      
-    | SCall ("getTextWidth", [e]) ->
+    | SCall ("getTextWidth", []) ->
       L.build_call getTextWidth_func [| (expr builder e) |] "getTextWidth" builder
-    | SCall ("getPageHeight", [e]) ->
+    | SCall ("getPageHeight", []) ->
       L.build_call getPageHeight_func [| |] "getPageHeight" builder  
-    | SCall ("getPageWidth", [e]) ->
+    | SCall ("getPageWidth", []) ->
       L.build_call getPageWidth_func [| |] "getPageWidth" builder      
 	  
       | SCall (f, args) ->
