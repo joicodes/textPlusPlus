@@ -54,24 +54,24 @@ let translate (globals, functions) =
 
 
   let addPage_t : L.lltype =
-      L.function_type i32_t [|  |] in
+      L.function_type i32_t [| |] in
   let addPage_func : L.llvalue =
       L.declare_function "addPage" addPage_t the_module in
 
 
 
   let left_t : L.lltype =
-    L.function_type i32_t [|  |] in
+    L.function_type i32_t [| |] in
   let left_func : L.llvalue =
       L.declare_function "left" left_t the_module in
     
   let right_t : L.lltype =
-    L.function_type i32_t [|  |] in
+    L.function_type i32_t [| |] in
   let right_func : L.llvalue =
       L.declare_function "right" right_t the_module in
 
   let center_t : L.lltype =
-    L.function_type i32_t [|  |] in
+    L.function_type i32_t [| |] in
   let center_func : L.llvalue =
       L.declare_function "center" center_t the_module in
 
@@ -93,17 +93,17 @@ let translate (globals, functions) =
 
 
   let bold_t : L.lltype =
-      L.function_type i32_t [|  |] in
+      L.function_type i32_t [| |] in
   let bold_func : L.llvalue =
       L.declare_function "bold" bold_t the_module in
       
     let italic_t : L.lltype =
-      L.function_type i32_t [|  |] in
+      L.function_type i32_t [| |] in
   let italic_func : L.llvalue =
       L.declare_function "italic" italic_t the_module in
       
   let regular_t : L.lltype =
-      L.function_type i32_t [|  |] in
+      L.function_type i32_t [| |] in
   let regular_func : L.llvalue =
       L.declare_function "regular" regular_t the_module in
       
@@ -253,7 +253,7 @@ let translate (globals, functions) =
           | A.Not                  -> L.build_not) e' "tmp" builder
 
 
-    | SCall ("addPage", [e]) ->
+    | SCall ("addPage", []) ->
       L.build_call addPage_func [| |] "addPage" builder
     
     | SCall ("left", [e]) ->
