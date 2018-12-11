@@ -84,9 +84,6 @@ int  addPage(){
 	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	HPDF_Page_SetLineWidth(currentPage, 1);
 
-	/* updates value for pageHeight and pageWidth */
-	pageHeight = HPDF_Page_GetHeight(currentPage);
-    pageWidth = HPDF_Page_GetWidth(currentPage);
 
 	/* sets  X and Y cooridintes to top left of page */
 	currentX = 0;
