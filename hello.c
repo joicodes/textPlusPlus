@@ -272,23 +272,23 @@ int drawRectangle( int lowerLeftX, int lowerLeftY, int rectangleWidth, int recta
 
 // GETTER FUNCTIONS
 
+
 int getPageNumber(){
 	return pageNumber;
 }
 
 float getTextWidth(char *text){
-
 	tw = HPDF_Page_TextWidth(currentPage, text);
 	return tw;
 } 
 
 float getPageHeight(){
-	pageHeight = HPDF_Page_GetHeight(currentPage);
-	return (int) pageHeight;
+	
+	return pageHeight;
 } 
 
 float getPageWidth(){
-	pageWidth = HPDF_Page_GetWidth(currentPage);
+	
 	return pageWidth;
 } 
 
