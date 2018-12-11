@@ -223,7 +223,7 @@ let translate (globals, functions) =
    | SCall ("getTextWidth", [e]) ->
     L.build_call getTextWidth_func [| (expr builder e) |] "getTextWidth" builder
     
-   | SCall ("changeColor", [e]; y; z) ->
+   | SCall ("changeColor", [e; y; z]) ->
     L.build_call changeColor_func [| (expr builder e) |] "changeColor" builder
     
     | SCall ("addPage", [e]) ->
