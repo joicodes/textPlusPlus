@@ -52,7 +52,7 @@ let check (globals, functions) =
         locals = []; body = [] }
 
         (StringMap.add "changeColor"
-    { typ = Void; fname = "changeColor"; formals = [(Float, "x"); (Float, "y"); (Float, "z")];
+    { typ = Void; fname = "changeColor"; formals = [(Int, "x"); (Int, "y"); (Int, "z")];
         locals = []; body = [] }
 
         (StringMap.add "changeFontSize"
