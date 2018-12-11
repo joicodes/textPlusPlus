@@ -78,7 +78,7 @@ let translate (globals, functions) =
       L.declare_function "getTextWidth" getTextWidth_t the_module in
  
    let changeColor_t : L.lltype =
-    L.function_type i32_t [| str_t |] in
+    L.function_type i32_t [| i32_t; i32_t; i32_t |] in
   let changeColor_func : L.llvalue =
       L.declare_function "changeColor" changeColor_t the_module in
   
@@ -223,7 +223,7 @@ let translate (globals, functions) =
    | SCall ("getTextWidth", [e]) ->
     L.build_call getTextWidth_func [| (expr builder e) |] "getTextWidth" builder
     
-   | SCall ("changeColor", [e]) ->
+   | SCall ("changeColor", [e]; y; z) ->
     L.build_call changeColor_func [| (expr builder e) |] "changeColor" builder
     
     | SCall ("addPage", [e]) ->
