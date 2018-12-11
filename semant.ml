@@ -100,7 +100,7 @@ let check (globals, functions) =
 
 
         (StringMap.add "getPageNumber"
-        { typ = Int; fname = "getPageNumber"; formals = [];
+        { typ = Void; fname = "getPageNumber"; formals = [];
            locals = []; body = [] }
 
         (StringMap.add "getTextWidth"
