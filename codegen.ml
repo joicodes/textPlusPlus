@@ -288,7 +288,7 @@ let translate (globals, functions) =
   
     | SCall ("getPageNumber", []) ->
       L.build_call getPageNumber_func [| |] "getPageNumber" builder      
-    | SCall ("getTextWidth", []) ->
+    | SCall ("getTextWidth", [e]) ->
       L.build_call getTextWidth_func [| (expr builder e) |] "getTextWidth" builder
     | SCall ("getPageHeight", []) ->
       L.build_call getPageHeight_func [| |] "getPageHeight" builder  
