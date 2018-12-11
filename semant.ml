@@ -32,24 +32,91 @@ let check (globals, functions) =
   (**** Check functions ****)
 
   (* Collect function declarations for built-in functions: no bodies *)
-  let built_in_decls = 
-    let add_bind map (name, ty) = StringMap.add name {
-      typ = Void;
-      fname = name; 
-      formals = [(ty, "x")];
-      locals = []; body = [] } map
-    in List.fold_left add_bind StringMap.empty [ ("addPage", Int);
-                                                ("write", String);
-						("bold", Int);
-						("italic", Int);
-                                                ("regular", Int);
-                                                ("changeColor", String); 
-						("changeFontSize", Int);
-						("drawLine", Int);
-						("drawRectangle", Int);
-						("getTextWidth", String);
-            ("textOut", String);
-            ("moveTo", Int)]
+   
+    let built_in_decls =  
+    
+    StringMap.add "addPage"
+     { typ = Int; fname = "addPage"; formals = [];
+       locals = []; body = [] }
+
+
+
+       (StringMap.add "left"
+     { typ = Void; fname = "left"; formals = [];
+       locals = []; body = [] }
+
+       (StringMap.add "right"
+     { typ = Void; fname = "right"; formals = [];
+       locals = []; body = [] }
+
+       (StringMap.add "center"
+     { typ = Void; fname = "center"; formals = [];
+       locals = []; body = [] }
+
+       (StringMap.add "write"
+       { typ = Void; fname = "write"; formals = [(String, "x")];
+          locals = []; body = [] }
+
+        (StringMap.add "textOut"
+      { typ = Void; fname = "textOut"; formals = [(String, "x"); (Int, "y"); (Int, "z")];
+        locals = []; body = [] }
+
+        ( StringMap.add "moveTo"
+      { typ = Void; fname = "moveTo"; formals = [(Int, "x"); (Int, "y")];
+        locals = []; body = [] } 
+  
+
+
+       (StringMap.add "bold"
+     { typ = Void; fname = "bold"; formals = [];
+       locals = []; body = [] }
+
+        (StringMap.add "italic"
+    { typ = Void; fname = "italic"; formals = [];
+        locals = []; body = [] }
+
+        (StringMap.add "regular"
+    { typ = Void; fname = "regular"; formals = [];
+        locals = []; body = [] }
+
+        (StringMap.add "changeColor"
+    { typ = Void; fname = "changeColor"; formals = [(Float, "x"); (Float, "y"); (Float, "z")];
+        locals = []; body = [] }
+
+        (StringMap.add "changeFontSize"
+    { typ = Void; fname = "changeFontSize"; formals = [(String, "x"); (Int, "y")];
+        locals = []; body = [] }
+
+
+
+        (StringMap.add "drawLine"
+    { typ = Void; fname = "drawLine"; formals = [(Int, "x"); (Int, "y"); (Int, "z"); (Int, "a")];
+        locals = []; body = [] }
+
+        (StringMap.add "drawRectangle"
+     { typ = Void; fname = "drawRectangle"; formals = [(Int, "x"); (Int, "y"); (Int, "z"); (Int, "a")];
+        locals = []; body = [] }
+
+
+
+        (StringMap.add "getPageNumber"
+        { typ = Int; fname = "getPageNumber"; formals = [];
+           locals = []; body = [] }
+
+        (StringMap.add "getTextWidth"
+     { typ = Void; fname = "getTextWidth"; formals = [(String, "x")];
+        locals = []; body = [] }
+
+        (StringMap.add "getPageHeight"
+     { typ = Void; fname = "getPageHeight"; formals = [];
+        locals = []; body = [] }
+
+        (StringMap.add "getPageWidth"
+     { typ = Void; fname = "getPageWidth"; formals = [];
+        locals = []; body = [] } StringMap.empty
+
+     )))))))))))))))))
+  
   in
 
   (* Add function name to symbol table *)

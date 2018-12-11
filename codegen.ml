@@ -52,63 +52,106 @@ let translate (globals, functions) =
       in StringMap.add n (L.define_global n init the_module) m in
     List.fold_left global_var StringMap.empty globals in
 
-  let bold_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
-  let bold_func : L.llvalue =
-      L.declare_function "bold" bold_t the_module in
-      
-    let italic_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
-  let italic_func : L.llvalue =
-      L.declare_function "italic" italic_t the_module in
-      
-  let regular_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
-  let regular_func : L.llvalue =
-      L.declare_function "regular" regular_t the_module in
-      
+
+  let addPage_t : L.lltype =
+      L.function_type i32_t [| |] in
+  let addPage_func : L.llvalue =
+      L.declare_function "addPage" addPage_t the_module in
+
+
+
+  let left_t : L.lltype =
+    L.function_type i32_t [| |] in
+  let left_func : L.llvalue =
+      L.declare_function "left" left_t the_module in
+    
+  let right_t : L.lltype =
+    L.function_type i32_t [| |] in
+  let right_func : L.llvalue =
+      L.declare_function "right" right_t the_module in
+
+  let center_t : L.lltype =
+    L.function_type i32_t [| |] in
+  let center_func : L.llvalue =
+      L.declare_function "center" center_t the_module in
+
   let write_t : L.lltype =
     L.function_type i32_t [| str_t |] in
   let write_func : L.llvalue =
       L.declare_function "write" write_t the_module in
+
+  let textOut_t : L.lltype =
+    L.function_type i32_t [| str_t ; i32_t ; i32_t|] in
+  let textOut_func : L.llvalue =
+      L.declare_function "textOut" textOut_t the_module in 
+
+  let moveTo_t : L.lltype =
+    L.function_type i32_t [| i32_t; i32_t |] in
+  let moveTo_func : L.llvalue =
+      L.declare_function "moveTo" moveTo_t the_module in  
+  
+
+
+  let bold_t : L.lltype =
+      L.function_type i32_t [| |] in
+  let bold_func : L.llvalue =
+      L.declare_function "bold" bold_t the_module in
       
+    let italic_t : L.lltype =
+      L.function_type i32_t [| |] in
+  let italic_func : L.llvalue =
+      L.declare_function "italic" italic_t the_module in
+      
+  let regular_t : L.lltype =
+      L.function_type i32_t [| |] in
+  let regular_func : L.llvalue =
+      L.declare_function "regular" regular_t the_module in
+      
+  let changeColor_t : L.lltype =
+    L.function_type i32_t [| float_t; float_t; float_t |] in
+  let changeColor_func : L.llvalue =
+      L.declare_function "changeColor" changeColor_t the_module in
+  
+  let changeFontSize_t : L.lltype =
+      L.function_type i32_t [| str_t; i32_t |] in
+  let changeFontSize_func : L.llvalue =
+      L.declare_function "changeFontSize" changeFontSize_t the_module in
+      
+
+
+  let drawLine_t : L.lltype =
+      L.function_type i32_t [| i32_t; i32_t; i32_t; i32_t |] in
+  let drawLine_func : L.llvalue =
+      L.declare_function "drawLine" drawLine_t the_module in    
+      
+  let drawRectangle_t : L.lltype =
+      L.function_type i32_t [| i32_t; i32_t; i32_t; i32_t |] in
+  let drawRectangle_func : L.llvalue =
+      L.declare_function "drawRectangle" drawLine_t the_module in 
+  
+      
+
+  let getPageNumber_t : L.lltype =
+    L.function_type i32_t [|  |] in
+  let getPageNumber_func : L.llvalue =
+      L.declare_function "getPageNumber" getPageNumber_t the_module in
+
   let getTextWidth_t : L.lltype =
     L.function_type float_t [| str_t |] in
   let getTextWidth_func : L.llvalue =
       L.declare_function "getTextWidth" getTextWidth_t the_module in
  
-   let changeColor_t : L.lltype =
-    L.function_type i32_t [| str_t |] in
-  let changeColor_func : L.llvalue =
-      L.declare_function "changeColor" changeColor_t the_module in
+  let getPageHeight_t : L.lltype =
+    L.function_type float_t [|  |] in
+  let getPageHeight_func : L.llvalue =
+      L.declare_function "getPageHeight" getPageHeight_t the_module in
+
+  let getPageWidth_t : L.lltype =
+    L.function_type float_t [|  |] in
+  let getPageWidth_func : L.llvalue =
+      L.declare_function "getPageWidth" getPageWidth_t the_module in
   
-    let changeFontSize_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
-  let changeFontSize_func : L.llvalue =
-      L.declare_function "changeFontSize" changeFontSize_t the_module in
-  
-  let addPage_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
-  let addPage_func : L.llvalue =
-      L.declare_function "addPage" addPage_t the_module in
-      
-    let drawLine_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
-  let drawLine_func : L.llvalue =
-      L.declare_function "drawLine" drawLine_t the_module in    
-      
-    let drawRectangle_t : L.lltype =
-      L.function_type i32_t [| i32_t |] in
-  let drawRectangle_func : L.llvalue =
-      L.declare_function "drawRectangle" drawLine_t the_module in 
-    let textOut_t : L.lltype =
-    L.function_type i32_t [| str_t |] in
-  let textOut_func : L.llvalue =
-      L.declare_function "textOut" textOut_t the_module in 
-    let moveTo_t : L.lltype =
-    L.function_type i32_t [| i32_t |] in
-  let moveTo_func : L.llvalue =
-      L.declare_function "moveTo" moveTo_t the_module in       
+     
       
 
   (* Define each function (arguments and return type) so we can 
@@ -209,36 +252,48 @@ let translate (globals, functions) =
 	  | A.Neg                  -> L.build_neg
           | A.Not                  -> L.build_not) e' "tmp" builder
 
-      | SCall ("bold", [e]) ->
-          L.build_call bold_func [| (expr builder e) |] "bold" builder
-      | SCall ("italic", [e]) ->
-	  L.build_call italic_func [| (expr builder e) |] "italic" builder 
-	  
-      | SCall ("regular", [e]) ->
-	  L.build_call regular_func [| (expr builder e) |] "regular" builder 
-	  
+
+    | SCall ("addPage", []) ->
+      L.build_call addPage_func [| |] "addPage" builder
+    
+    | SCall ("left", []) ->
+      L.build_call left_func [| |] "left" builder
+    | SCall ("right", []) ->
+      L.build_call right_func [| |] "right" builder
+    | SCall ("center", []) ->
+      L.build_call center_func [| |] "center" builder
+
     | SCall ("write", [e]) ->
-    L.build_call write_func [| (expr builder e) |] "write" builder
-    
-   | SCall ("getTextWidth", [e]) ->
-    L.build_call getTextWidth_func [| (expr builder e) |] "getTextWidth" builder
-    
-   | SCall ("changeColor", [e]) ->
-    L.build_call changeColor_func [| (expr builder e) |] "changeColor" builder
-    
-    | SCall ("addPage", [e]) ->
-	  L.build_call addPage_func [| (expr builder e) |] "addPage" builder
-	  
-    | SCall ("changeFontSize", [e]) ->
-	  L.build_call changeFontSize_func [| (expr builder e) |] "changeFontSize" builder
-    | SCall ("drawLine", [e]) ->
-	  L.build_call drawLine_func [| (expr builder e) |] "drawLine" builder
-    | SCall ("drawRectangle", [e]) ->
-	  L.build_call drawRectangle_func [| (expr builder e) |] "drawRectangle" builder
-    | SCall ("textOut", [e]) ->
-    L.build_call textOut_func [| (expr builder e) |] "textOut" builder
-    | SCall ("moveTo", [e]) ->
-    L.build_call moveTo_func [| (expr builder e) |] "moveTo" builder	  
+      L.build_call write_func [| (expr builder e) |] "write" builder
+    | SCall ("textOut", [e; y; z]) ->
+      L.build_call textOut_func [| (expr builder e); (expr builder y); (expr builder z) |] "textOut" builder
+    | SCall ("moveTo", [e; y]) ->
+      L.build_call moveTo_func [| (expr builder e); (expr builder y)|] "moveTo" builder	  
+
+    | SCall ("bold", []) ->
+      L.build_call bold_func [|  |] "bold" builder
+    | SCall ("italic", []) ->
+      L.build_call italic_func [|  |] "italic" builder 
+    | SCall ("regular", []) ->
+      L.build_call regular_func [|  |] "regular" builder 
+    | SCall ("changeColor", [e; y; z]) ->
+      L.build_call changeColor_func [| (expr builder e); (expr builder y); (expr builder z) |] "changeColor" builder
+    | SCall ("changeFontSize", [e ; y]) ->
+      L.build_call changeFontSize_func [| (expr builder e); (expr builder y)  |] "changeFontSize" builder
+  
+    | SCall ("drawLine", [e; y; z; a]) ->
+      L.build_call drawLine_func [| (expr builder e); (expr builder y); (expr builder z); (expr builder a)|] "drawLine" builder
+    | SCall ("drawRectangle", [e; y; z; a]) ->
+      L.build_call drawRectangle_func [| (expr builder e); (expr builder y); (expr builder z); (expr builder a) |] "drawRectangle" builder
+  
+    | SCall ("getPageNumber", []) ->
+      L.build_call getPageNumber_func [| |] "getPageNumber" builder      
+    | SCall ("getTextWidth", [e]) ->
+      L.build_call getTextWidth_func [| (expr builder e) |] "getTextWidth" builder
+    | SCall ("getPageHeight", []) ->
+      L.build_call getPageHeight_func [| |] "getPageHeight" builder  
+    | SCall ("getPageWidth", []) ->
+      L.build_call getPageWidth_func [| |] "getPageWidth" builder      
 	  
       | SCall (f, args) ->
          let (fdef, fdecl) = StringMap.find f function_decls in
