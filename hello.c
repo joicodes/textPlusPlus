@@ -283,8 +283,8 @@ float getTextWidth(char *text){
 } 
 
 float getPageHeight(){
-	pageHeight = HPDF_Page_GetHeight(currentPage);
-	return pageHeight;
+ 
+	return HPDF_Page_GetHeight(currentPage);
 } 
 
 float getPageWidth(){
