@@ -376,6 +376,9 @@ int table(int row, int column, int tableWidth, int tableHeight){
 	int rowHeight;
 	int columnWidth;
 
+	int r;
+	int c;
+	
 	int i;
 	int j;
 
