@@ -50,7 +50,6 @@ HPDF_Font courierBold;
 float textWidth;
 char *alignment;
 
-int *ptr_one;
 
 extern void start();
 
@@ -275,39 +274,58 @@ int drawRectangle( int lowerLeftX, int lowerLeftY, int rectangleWidth, int recta
 
 
 int getPageNumber(){
-	
-	return 1;
+	return pageNumber;
 }
 
-int getTextWidth(char *text){
+float getTextWidth(char *text){
 
-	//*ptr_tw = HPDF_Page_TextWidth(currentPage, text);
-	// *ptr_tw = 25.0;
+	HPDF_Page_SetFontAndSize (currentPage, currentFont, currentSize);
+	tw = HPDF_Page_TextWidth (currentPage, text);
+	HPDF_Page_BeginText (currentPage);
+	HPDF_Page_TextOut (currentPage, (HPDF_Page_GetWidth(currentPage) - tw) / 2, HPDF_Page_GetHeight (currentPage) - currentSize, text);
+	HPDF_Page_EndText (currentPage);
 
-	return *ptr_one;
-
+	return 1.0;
+	//tw = HPDF_Page_TextWidth(currentPage, text);
+	//return tw;
 } 
 
 float getPageHeight(){
 	
-	return 1;
+	return pageHeight;
 } 
 
 float getPageWidth(){
 	
-	return 1;
+	return pageWidth;
 } 
+
+
+
+
+// Built-in Functions
+
+int pageTitle(int size, char* text){
+
+	HPDF_Page_SetFontAndSize (currentPage, currentFont, currentSize);
+	tw = HPDF_Page_TextWidth (currentPage, text);
+	HPDF_Page_BeginText (currentPage);
+	HPDF_Page_TextOut (currentPage, (HPDF_Page_GetWidth(currentPage) - tw) / 2, HPDF_Page_GetHeight (currentPage) - currentSize, text);
+	HPDF_Page_EndText (currentPage);
+
+}
+
+
+
+
+
+
 
 
 int main(int argc){
 
     /* starts program
 	 * creates a PDF document */
-
-	ptr_one = (int *)malloc(sizeof(int));
-
-	*ptr_one = 25;
-
 
     pdf = HPDF_New(error_handler, NULL);   
 
