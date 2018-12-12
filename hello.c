@@ -280,8 +280,8 @@ int getPageNumber(){
 
 float getTextWidth(char *text){
 
-	int *ptr_tw;
-	ptr_tw = (int *)malloc(sizeof(int));
+	float *ptr_tw;
+	ptr_tw = (float *)malloc(sizeof(float));
 
 	if (ptr_tw == 0)
 	{
