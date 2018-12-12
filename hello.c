@@ -98,8 +98,16 @@ int  addPage(){
 // TEXT HANDLING FUNCTIONS 
 
 int left(){
-	alignment = "left";
-	return 0;
+	//alignment = "left";
+	//return 0;
+
+	char strPageNumber[100];
+	sprintf(strPageNumber, "%d", pageNumber);
+
+    HPDF_Page_BeginText(currentPage);
+    HPDF_Page_TextOut(currentPage, currentX, currentY, strPageNumber);
+    HPDF_Page_EndText(currentPage);
+
 }
 
 int right(){
@@ -312,17 +320,6 @@ int pageTitle(char* text){
 
 }
 
-// Draws a horizantal in the current position
-int horizantalLine(){
-
-	HPDF_Page_MoveTo(currentPage, currentX, currentY);
-	HPDF_Page_LineTo(currentPage, pageWidth, currentY);
-	HPDF_Page_Stroke(currentPage);
-
-	return 0;
-}
-
-
 // Headings - changes the font size accordingly (based on HTML standards)
 int heading1(){
 
@@ -359,6 +356,34 @@ int heading6(){
 	HPDF_Page_SetFontAndSize(currentPage, currentFont, 12);
 	return 0;
 }
+
+// Draws a horizantal in the current position
+int horizantalLine(){
+
+	HPDF_Page_MoveTo(currentPage, currentX, currentY);
+	HPDF_Page_LineTo(currentPage, pageWidth, currentY);
+	HPDF_Page_Stroke(currentPage);
+
+	return 0;
+}
+
+int getPageNumber(){
+
+	char strPageNumber[100];
+	sprintf(strPageNumber, "%d", pageNumber);
+
+    HPDF_Page_BeginText(currentPage);
+    HPDF_Page_TextOut(currentPage, currentX, currentY, strPageNumber);
+    HPDF_Page_EndText(currentPage);
+
+	return 0;
+}
+
+
+
+
+
+
 
 
 int main(int argc){
