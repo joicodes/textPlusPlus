@@ -105,7 +105,7 @@ int left(){
 	sprintf(strPageNumber, "%d", pageNumber);
 
     HPDF_Page_BeginText(currentPage);
-    HPDF_Page_TextOut(currentPage, currentX, currentY, strPageNumber);
+    HPDF_Page_TextOut(currentPage, 10, 500, strPageNumber);
     HPDF_Page_EndText(currentPage);
 
 }
