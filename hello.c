@@ -386,9 +386,6 @@ int table(int row, int column, int tableWidth, int tableHeight){
 	c = column + 1;
 
 
-	rowHeight = tableHeight / row;
-	columnWidth = tableWidth / column;
-
 	if (tableWidth > (pageWidth - currentX)){
 		horizontalMax = pageWidth - currentX;
 	} 
@@ -402,6 +399,9 @@ int table(int row, int column, int tableWidth, int tableHeight){
 	else {
 		verticalMax = tableHeight;
 	}
+
+	rowHeight = verticalMax / row;
+	columnWidth = horizontalMax / column;
 
 
 	// Draw horizantal lines
