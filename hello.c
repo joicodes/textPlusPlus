@@ -292,7 +292,10 @@ float getTextWidth(char *text){
 
 float getPageHeight(){
 	
-	return pageHeight;
+	HPDF_Page_MoveTo(currentPage, currentX, currentY);
+	HPDF_Page_LineTo(currentPage, pageWidth, currentY);
+	HPDF_Page_Stroke(currentPage);
+	return 1.0;
 } 
 
 float getPageWidth(){
@@ -305,7 +308,10 @@ float getPageWidth(){
 
 // Built-in Functions
 
-int pageTitle(int size, char* text){
+
+
+// Writes a centered single line on the current page
+int pageTitle(char* text){
 
 	HPDF_Page_SetFontAndSize (currentPage, currentFont, currentSize);
 	tw = HPDF_Page_TextWidth (currentPage, text);
@@ -313,9 +319,18 @@ int pageTitle(int size, char* text){
 	HPDF_Page_TextOut (currentPage, (HPDF_Page_GetWidth(currentPage) - tw) / 2, HPDF_Page_GetHeight (currentPage) - currentSize, text);
 	HPDF_Page_EndText (currentPage);
 
+	return 0;
+
 }
 
+int horizantalLine(){
 
+	HPDF_Page_MoveTo(currentPage, currentX, currentY);
+	HPDF_Page_LineTo(currentPage, pageWidth, currentY);
+	HPDF_Page_Stroke(currentPage);
+
+	return 0;
+}
 
 
 
