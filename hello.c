@@ -279,22 +279,12 @@ int getPageNumber(){
 
 float getTextWidth(char *text){
 
-	HPDF_Page_SetFontAndSize (currentPage, currentFont, currentSize);
-	tw = HPDF_Page_TextWidth (currentPage, text);
-	HPDF_Page_BeginText (currentPage);
-	HPDF_Page_TextOut (currentPage, (HPDF_Page_GetWidth(currentPage) - tw) / 2, HPDF_Page_GetHeight (currentPage) - currentSize, text);
-	HPDF_Page_EndText (currentPage);
-
-	return 1.0;
-	//tw = HPDF_Page_TextWidth(currentPage, text);
-	//return tw;
+	tw = HPDF_Page_TextWidth(currentPage, text);
+	return tw;
 } 
 
 float getPageHeight(){
 	
-	HPDF_Page_MoveTo(currentPage, currentX, currentY);
-	HPDF_Page_LineTo(currentPage, pageWidth, currentY);
-	HPDF_Page_Stroke(currentPage);
 	return 1.0;
 } 
 
@@ -306,8 +296,7 @@ float getPageWidth(){
 
 
 
-// Built-in Functions
-
+// FUNCTIONS FOR STANDARD LIBRARY
 
 
 // Writes a centered single line on the current page
@@ -323,6 +312,7 @@ int pageTitle(char* text){
 
 }
 
+// Draws a horizantal in the current position
 int horizantalLine(){
 
 	HPDF_Page_MoveTo(currentPage, currentX, currentY);
@@ -333,8 +323,42 @@ int horizantalLine(){
 }
 
 
+// Headings - changes the font size accordingly (based on HTML standards)
+int heading1(){
 
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, 32);
+	return 0;
+}
 
+int heading2(){
+	
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, 24);
+	return 0;
+}
+
+int heading3(){
+	
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, 18);
+	return 0;
+}
+
+int heading4(){
+	
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, 16);
+	return 0;
+}
+
+int heading5(){
+	
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, 14);
+	return 0;
+}
+
+int heading6(){
+	
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, 12);
+	return 0;
+}
 
 
 int main(int argc){
