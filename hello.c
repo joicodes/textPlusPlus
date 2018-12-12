@@ -324,38 +324,38 @@ int pageTitle(char* text){
 
 // Headings - changes the font size accordingly (based on HTML standards)
 int heading1(){
-
-	HPDF_Page_SetFontAndSize(currentPage, currentFont, 32);
+	currentSize = 32;
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	return 0;
 }
 
 int heading2(){
-	
-	HPDF_Page_SetFontAndSize(currentPage, currentFont, 24);
+	currentSize = 24;
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	return 0;
 }
 
 int heading3(){
-	
-	HPDF_Page_SetFontAndSize(currentPage, currentFont, 18);
+	currentSize = 18;
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	return 0;
 }
 
 int heading4(){
-	
-	HPDF_Page_SetFontAndSize(currentPage, currentFont, 16);
+	currentSize = 16;
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	return 0;
 }
 
 int heading5(){
-	
-	HPDF_Page_SetFontAndSize(currentPage, currentFont, 14);
+	currentSize = 14;
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	return 0;
 }
 
 int heading6(){
-	
-	HPDF_Page_SetFontAndSize(currentPage, currentFont, 12);
+	currentSize = 12;
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	return 0;
 }
 
@@ -371,7 +371,7 @@ int horizantalLine(){
 
 int table(){
 
-	
+
 }
 
 
