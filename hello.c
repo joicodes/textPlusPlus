@@ -382,8 +382,6 @@ int table(int row, int column, int tableWidth, int tableHeight){
 	r = row +1;
 	c = column + 1;
 
-	xpos = currentX;
-	ypos = currentY;
 
 	rowHeight = tableHeight / row;
 	columnWidth = tableWidth / column;
