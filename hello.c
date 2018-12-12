@@ -274,12 +274,14 @@ int drawRectangle( int lowerLeftX, int lowerLeftY, int rectangleWidth, int recta
 
 
 int getPageNumber(){
+	
 	return 1;
 }
 
 float getTextWidth(char *text){
+	HPDF_REAL tw;
 	tw = HPDF_Page_TextWidth(currentPage, text);
-	return 1;
+	return tw;
 } 
 
 float getPageHeight(){
