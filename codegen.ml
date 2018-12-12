@@ -131,10 +131,10 @@ let translate (globals, functions) =
   
       
 
-  let getPageNumber_t : L.lltype =
-    L.function_type i32_t [|  |] in
-  let getPageNumber_func : L.llvalue =
-      L.declare_function "getPageNumber" getPageNumber_t the_module in
+  let pageNumber_t : L.lltype =
+    L.function_type i32_t [| i32_t; i32_t |] in
+  let pageNumber_func : L.llvalue =
+      L.declare_function "pageNumber" pageNumber_t the_module in
 
   let getTextWidth_t : L.lltype =
     L.function_type float_t [| str_t |] in
@@ -286,8 +286,8 @@ let translate (globals, functions) =
     | SCall ("drawRectangle", [e; y; z; a]) ->
       L.build_call drawRectangle_func [| (expr builder e); (expr builder y); (expr builder z); (expr builder a) |] "drawRectangle" builder
   
-    | SCall ("getPageNumber", []) ->
-      L.build_call getPageNumber_func [| |] "getPageNumber" builder      
+    | SCall ("pageNumber", [e; y]) ->
+      L.build_call pageNumber_func [|(expr builder e); (expr builder y) |] "pageNumber" builder      
     | SCall ("getTextWidth", [e]) ->
       L.build_call getTextWidth_func [| (expr builder e) |] "getTextWidth" builder
     | SCall ("getPageHeight", []) ->

@@ -98,15 +98,9 @@ int  addPage(){
 // TEXT HANDLING FUNCTIONS 
 
 int left(){
-	//alignment = "left";
-	//return 0;
 
-	char strPageNumber[100];
-	sprintf(strPageNumber, "%d", pageNumber);
-
-    HPDF_Page_BeginText(currentPage);
-    HPDF_Page_TextOut(currentPage, 10, 500, strPageNumber);
-    HPDF_Page_EndText(currentPage);
+	alignment = "left";
+	return 0;
 
 }
 
@@ -278,13 +272,21 @@ int drawRectangle( int lowerLeftX, int lowerLeftY, int rectangleWidth, int recta
 }
 
 
-// GETTER FUNCTIONS
 
+int pageNumber(int x, int y){
 
-int getPageNumber(){
-	return pageNumber;
+	char strPageNumber[100];
+	sprintf(strPageNumber, "%d", pageNumber);
+
+    HPDF_Page_BeginText(currentPage);
+    HPDF_Page_TextOut(currentPage, x, y, strPageNumber);
+    HPDF_Page_EndText(currentPage);
+
+	return 0;
 }
 
+
+// Getter Functions
 float getTextWidth(char *text){
 
 	tw = HPDF_Page_TextWidth(currentPage, text);
@@ -367,17 +369,6 @@ int horizantalLine(){
 	return 0;
 }
 
-int showPageNumber(){
-
-	char strPageNumber[100];
-	sprintf(strPageNumber, "%d", pageNumber);
-
-    HPDF_Page_BeginText(currentPage);
-    HPDF_Page_TextOut(currentPage, currentX, currentY, strPageNumber);
-    HPDF_Page_EndText(currentPage);
-
-	return 0;
-}
 
 
 
