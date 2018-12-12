@@ -279,9 +279,19 @@ int getPageNumber(){
 }
 
 float getTextWidth(char *text){
-	HPDF_REAL tw;
-	tw = HPDF_Page_TextWidth(currentPage, text);
-	return tw;
+
+	int *ptr_tw;
+	ptr_tw = (int *)malloc(sizeof(int));
+
+	if (ptr_tw == 0)
+	{
+		return -1;
+	}
+
+	*ptr_tw = HPDF_Page_TextWidth(currentPage, text);
+
+	return ptr_tw;
+
 } 
 
 float getPageHeight(){
