@@ -367,7 +367,7 @@ int horizantalLine(){
 	return 0;
 }
 
-int getPageNumber(){
+int showPageNumber(){
 
 	char strPageNumber[100];
 	sprintf(strPageNumber, "%d", pageNumber);
