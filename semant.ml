@@ -102,6 +102,8 @@ let check (globals, functions) =
         (StringMap.add "pageNumber"
         { typ = Int; fname = "pageNumber"; formals = [(Int, "x"); (Int, "y");];
            locals = []; body = [] }
+           
+
 
         (StringMap.add "getTextWidth"
      { typ = Void; fname = "getTextWidth"; formals = [(String, "x")];
@@ -113,9 +115,44 @@ let check (globals, functions) =
 
         (StringMap.add "getPageWidth"
      { typ = Void; fname = "getPageWidth"; formals = [];
-        locals = []; body = [] } StringMap.empty
+        locals = []; body = [] } 
 
-     )))))))))))))))))
+
+        (StringMap.add "pageTitle"
+     { typ = Void; fname = "getPageWidth"; formals = [(String, "x");];
+        locals = []; body = [] } 
+
+        (StringMap.add "table"
+        { typ = Void; fname = "getPageWidth"; formals = [(Int, "x"); (Int, "y"); (Int, "z"); (Int, "a")];
+           locals = []; body = [] } 
+
+        
+        (StringMap.add "heading1"
+        { typ = Void; fname = "heading1"; formals = [];
+           locals = []; body = [] } 
+
+        (StringMap.add "heading2"
+        { typ = Void; fname = "heading2"; formals = [];
+          locals = []; body = [] } 
+        
+        (StringMap.add "heading3"
+        { typ = Void; fname = "heading3"; formals = [];
+            locals = []; body = [] }    
+
+        (StringMap.add "heading4"
+        { typ = Void; fname = "heading4"; formals = [];
+            locals = []; body = [] } 
+
+        (StringMap.add "heading5"
+        { typ = Void; fname = "heading5"; formals = [];
+          locals = []; body = [] } 
+
+        (StringMap.add "heading6"
+        { typ = Void; fname = "heading6"; formals = [];
+            locals = []; body = [] } StringMap.empty
+
+
+     )))))))))))))))))))))))))
   
   in
 

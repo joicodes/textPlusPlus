@@ -369,7 +369,10 @@ int horizantalLine(){
 	return 0;
 }
 
+int table(){
 
+	
+}
 
 
 

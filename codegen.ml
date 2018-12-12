@@ -151,7 +151,43 @@ let translate (globals, functions) =
   let getPageWidth_func : L.llvalue =
       L.declare_function "getPageWidth" getPageWidth_t the_module in
   
-     
+
+  
+  let pageTitle_t : L.lltype =
+      L.function_type i32_t [| str_t |] in
+  let pageTitle_func : L.llvalue =
+      L.declare_function "pageTitle" pageTitle_t the_module in
+      
+  let table_t : L.lltype =
+    L.function_type i32_t [| i32_t; i32_t; i32_t; i32_t |] in
+  let table_func : L.llvalue =
+      L.declare_function "table" table_t the_module in 
+
+  let heading1_t : L.lltype =
+    L.function_type i32_t [| |] in
+  let heading1_func : L.llvalue =
+    L.declare_function "heading1" heading1_t the_module in
+  let heading2_t : L.lltype =
+    L.function_type i32_t [| |] in
+  let heading2_func : L.llvalue =
+    L.declare_function "heading2" heading2_t the_module in
+  let heading3_t : L.lltype =
+    L.function_type i32_t [| |] in
+  let heading3_func : L.llvalue =
+    L.declare_function "heading3" heading3_t the_module in
+  let heading4_t : L.lltype =
+    L.function_type i32_t [| |] in
+  let heading4_func : L.llvalue =
+    L.declare_function "heading4" heading4_t the_module in
+  let heading5_t : L.lltype =
+    L.function_type i32_t [| |] in
+  let heading5_func : L.llvalue =
+    L.declare_function "heading5" heading5_t the_module in
+  let heading6_t : L.lltype =
+    L.function_type i32_t [| |] in
+  let heading6_func : L.llvalue =
+    L.declare_function "heading6" heading6_t the_module in
+
       
 
   (* Define each function (arguments and return type) so we can 
@@ -294,6 +330,27 @@ let translate (globals, functions) =
       L.build_call getPageHeight_func [| |] "getPageHeight" builder  
     | SCall ("getPageWidth", []) ->
       L.build_call getPageWidth_func [| |] "getPageWidth" builder      
+
+    | SCall ("pageTitle", [e]) ->
+      L.build_call pageTitle_func [| (expr builder e) |] "pageTitle" builder
+    | SCall ("table", [e; y; z; a]) ->
+      L.build_call table_func [| (expr builder e); (expr builder y); (expr builder z); (expr builder a) |] "table" builder 
+
+    | SCall ("heading1", []) ->
+      L.build_call heading1_func [| |] "heading1" builder  
+    | SCall ("heading2", []) ->
+      L.build_call heading2_func [| |] "heading2" builder  
+    | SCall ("heading3", []) ->
+      L.build_call heading3_func [| |] "heading3" builder  
+    | SCall ("heading4", []) ->
+      L.build_call heading4_func [| |] "heading4" builder  
+    | SCall ("heading5", []) ->
+      L.build_call heading5_func [| |] "heading5" builder  
+    | SCall ("heading6", []) ->
+      L.build_call heading6_func [| |] "heading6" builder  
+
+
+
 	  
       | SCall (f, args) ->
          let (fdef, fdecl) = StringMap.find f function_decls in
