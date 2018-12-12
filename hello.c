@@ -288,7 +288,8 @@ float getTextWidth(char *text){
 		return -1;
 	}
 
-	*ptr_tw = HPDF_Page_TextWidth(currentPage, text);
+	//*ptr_tw = HPDF_Page_TextWidth(currentPage, text);
+	*ptr_tw = 25;
 
 	return *ptr_tw;
 
