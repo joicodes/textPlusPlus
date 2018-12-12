@@ -50,6 +50,8 @@ HPDF_Font courierBold;
 float textWidth;
 char *alignment;
 
+int *ptr_one;
+
 extern void start();
 
 jmp_buf env;
@@ -301,7 +303,7 @@ int main(int argc){
 
     /* starts program
 	 * creates a PDF document */
-	int *ptr_one;
+
 	ptr_one = (int *)malloc(sizeof(int));
 
 	*ptr_one = 25;
