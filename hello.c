@@ -50,6 +50,8 @@ HPDF_Font courierBold;
 float textWidth;
 char *alignment;
 
+float *ptr_tw;
+ptr_tw = (float *)malloc(sizeof(float));
 
 extern void start();
 
@@ -279,14 +281,6 @@ int getPageNumber(){
 }
 
 float getTextWidth(char *text){
-
-	float *ptr_tw;
-	ptr_tw = (float *)malloc(sizeof(float));
-
-	if (ptr_tw == 0)
-	{
-		return -1;
-	}
 
 	//*ptr_tw = HPDF_Page_TextWidth(currentPage, text);
 	*ptr_tw = 25;
