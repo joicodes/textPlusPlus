@@ -21,7 +21,7 @@ HPDF_Page currentPage;
 HPDF_REAL pageHeight;
 HPDF_REAL pageWidth;
 
-int pageNumber;
+int pnumber;
 
 //Text Handling
 HPDF_REAL currentX;
@@ -78,7 +78,7 @@ int  addPage(){
 
 	/* updates current page and page number */
 	currentPage = newPage;
-	pageNumber = pageNumber + 1;
+	pnumber = pnumber + 1;
 
 	/* sets the font, size, and line width for page */
 	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
@@ -276,7 +276,7 @@ int drawRectangle( int lowerLeftX, int lowerLeftY, int rectangleWidth, int recta
 int pageNumber(int x, int y){
 
 	char strPageNumber[100];
-	sprintf(strPageNumber, "%d", pageNumber);
+	sprintf(strPageNumber, "%d", pnumber);
 
     HPDF_Page_BeginText(currentPage);
     HPDF_Page_TextOut(currentPage, x, y, strPageNumber);
@@ -407,7 +407,7 @@ int main(int argc){
 	/* creates and adds new page to PDF */
     firstPage = HPDF_AddPage(pdf); 
     currentPage = firstPage;
-    pageNumber = 1;
+    pnumber = 1;
 
 
     /* sets default color, size, and font */
