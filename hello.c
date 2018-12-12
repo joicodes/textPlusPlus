@@ -369,8 +369,59 @@ int horizantalLine(){
 	return 0;
 }
 
-int table(){
+int table(int row, int column, int tableWidth, int tableHeight){
 
+	int horizontalMax;
+	int verticalMax;
+	int rowHeight;
+	int columnWidth;
+
+	int i;
+	int j;
+
+	r = row +1;
+	c = column + 1;
+
+	xpos = currentX;
+	ypos = currentY;
+
+	rowHeight = tableHeight / row;
+	columnWidth = tableWidth / column;
+
+	if (tableWidth > (pageWidth - currentX)){
+		horizontalMax = pageWidth - currentX;
+	} 
+	else {
+		horizontalMax = tableWidth;
+	}
+
+	if (tableHeight >  currentY){
+		verticalMax = currentY;
+	} 
+	else {
+		verticalMax = tableHeight;
+	}
+
+
+	// Draw horizantal lines
+	 for ( i = 0 ; i < r ; i++ ){
+
+		HPDF_Page_MoveTo(currentPage, currentX, currentY - (rowHeight * i));
+		HPDF_Page_LineTo(currentPage, horizontalMax, currentY - (rowHeight * i));
+		HPDF_Page_Stroke(currentPage);
+
+	 }
+    
+	// Draw vertical lines
+	 for ( j = 1 ; j < c ; j++ ){
+
+		HPDF_Page_MoveTo(currentPage, currentX + (columnWidth * j), currentY);
+		HPDF_Page_LineTo(currentPage, currentX + (columnWidth * j), verticalMax);
+		HPDF_Page_Stroke(currentPage);
+
+	 }
+
+	 return 0;
 
 }
 
