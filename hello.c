@@ -378,7 +378,7 @@ int table(int row, int column, int tableWidth, int tableHeight){
 
 	int r;
 	int c;
-	
+
 	int i;
 	int j;
 
@@ -417,7 +417,7 @@ int table(int row, int column, int tableWidth, int tableHeight){
 	 for ( j = 1 ; j < c ; j++ ){
 
 		HPDF_Page_MoveTo(currentPage, currentX + (columnWidth * j), currentY);
-		HPDF_Page_LineTo(currentPage, currentX + (columnWidth * j), verticalMax);
+		HPDF_Page_LineTo(currentPage, currentX + (columnWidth * j), currentY - verticalMax);
 		HPDF_Page_Stroke(currentPage);
 
 	 }
