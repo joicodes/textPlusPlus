@@ -288,12 +288,12 @@ int getPageNumber(){
 	return 1;
 }
 
-float getTextWidth(char *text){
+int getTextWidth(char *text){
 
 	//*ptr_tw = HPDF_Page_TextWidth(currentPage, text);
 	// *ptr_tw = 25.0;
 
-	return *ptr_tw;
+	return *ptr_one;
 
 } 
 
