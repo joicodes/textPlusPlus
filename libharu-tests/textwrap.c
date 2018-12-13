@@ -62,12 +62,12 @@ int main(int argc, char **argv)
     HPDF_Page_BeginText(page);
 
     int last_line = 0;
-    int alignment = 0; // 0 means left, 1 means right, 2 means center
+    int alignment = 1; // 0 means left, 1 means right, 2 means center
 
     int pos = 0;
 
     switch(alignment) {
-        case 0 : ;
+        case 0 : ; //left alighnment
             for(;;){
 
                 int bytes = HPDF_Page_MeasureText(page, line_one, page_limit, HPDF_TRUE, NULL);
@@ -79,10 +79,6 @@ int main(int argc, char **argv)
                 char *curr_string = (char *) malloc(length + 1);
                 memcpy(curr_string, start, length); 
                 curr_string[length] = '\0';
-                int textWidth = HPDF_Page_TextWidth(page, curr_string);
-                printf("*********textWidth*****\n");
-                printf("textWidth: %d\n", textWidth);
-                printf("******textWidth**********\n");
                 
                 HPDF_Page_TextOut (page, 25, currentY, curr_string);
                 free(curr_string);
@@ -115,54 +111,62 @@ int main(int argc, char **argv)
                     last_line = 1;
                 }
             }
-    }
-        /*
-        char *start = &line_one[pos];
-        char *end = &line_one[pos + bytes];
-        size_t length = end - start;
-        
-        
-        char *curr_string = (char *) malloc(length + 1);
-        memcpy(curr_string, start, length); 
-        curr_string[length] = '\0';
-        int textWidth = HPDF_Page_TextWidth(page, curr_string);
-        printf("*********textWidth*****\n");
-        printf("textWidth: %d\n", textWidth);
-        printf("******textWidth**********\n");
-        
-        HPDF_Page_TextOut (page, 25, currentY, curr_string);
-        free(curr_string);
 
-        currentY = currentY - 2 * f_real_h;
-        line_one = line_one + bytes;
+            case 1 : ; //right alighnment
+            for(;;){
 
-        //for the case the person writes stuff thats longer
-        //than the page can fit
-        if (currentY <= 25){
-            HPDF_Page_EndText (page);
+                int bytes = HPDF_Page_MeasureText(page, line_one, page_limit, HPDF_TRUE, NULL);
+                char *start = &line_one[pos];
+                char *end = &line_one[pos + bytes];
+                size_t length = end - start;
+                
+                
+                char *curr_string = (char *) malloc(length + 1);
+                memcpy(curr_string, start, length); 
+                curr_string[length] = '\0';
+                int textWidth = HPDF_Page_TextWidth(page, curr_string);
 
-            HPDF_Page newPage;
-            newPage = HPDF_AddPage(pdf);
+                printf("******textWidth*******\n");
+                printf("%d\n", textWidth);
+                printf("******textWidth*******\n");
 
-            page = newPage;
+                int move_right = page_limit - textWidth;
+                printf("******moveright*******\n");
+                printf("%d\n", move_right);
+                printf("******moveright*******\n");
+                
+                HPDF_Page_TextOut (page, 25 + move_right, currentY, curr_string);
+                free(curr_string);
 
-            HPDF_Page_BeginText (page);
-            HPDF_Page_SetFontAndSize (page, font, 12);
-            
-            currentX = 0 + 25;
-            currentY = pageHeight - 25;
-        }
+                currentY = currentY - 2 * f_real_h;
+                line_one = line_one + bytes;
 
-        if (last_line == 1){
-            break;
-        }
+                //for the case the person writes stuff thats longer
+                //than the page can fit
+                if (currentY <= 25){
+                    HPDF_Page_EndText (page);
 
-        if (strlen(line_one) <= bytes){
-            last_line = 1;
-        }   
-        */
-    
+                    HPDF_Page newPage;
+                    newPage = HPDF_AddPage(pdf);
 
+                    page = newPage;
+
+                    HPDF_Page_BeginText (page);
+                    HPDF_Page_SetFontAndSize (page, font, 12);
+                    
+                    currentX = 0 + 25;
+                    currentY = pageHeight - 25;
+                }
+
+                if (last_line == 1){
+                    break;
+                }
+
+                if (strlen(line_one) <= bytes){
+                    last_line = 1;
+                }
+            }
+    }    
 
     HPDF_Page_EndText (page);
 
