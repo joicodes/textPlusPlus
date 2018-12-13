@@ -25,6 +25,7 @@ int main(int argc, char **argv)
     HPDF_TextWidth width;
     HPDF_REAL pageHeight;
     HPDF_REAL pageWidth;
+    int font_size = 12;
 
 
     HPDF_REAL currentX;
@@ -52,49 +53,47 @@ int main(int argc, char **argv)
     int right_margin = pageWidth - 25;
     int left_margin = 25;
     int page_limit = pageWidth - (2 * left_margin);
+    printf("************page_limit*****************\n");
+    printf("%d\n", page_limit);
 
     int f_height = HPDF_Font_GetCapHeight(font);
-    int f_lower_height = HPDF_Font_GetXHeight (font);
-    int f_real_h = f_height * 12 / 1000.0;
-    int f_real_h_l = f_lower_height * 12 / 1000.0;
-
-    int descent = HPDF_Font_GetDescent(font);
-    int descent_real = descent * 12 /1000.0;
-    printf("font height: %d\n lowercase: %d descent: %d\n", f_real_h, f_real_h_l, descent_real);
-
-    //printf("%d\n", page_limit);
-    //printf("%d\n", right_margin);
-    //printf("%f\n", pageWidth);
-    
+    int f_real_h = f_height * font_size / 1000.0;
     
     HPDF_Page_SetFontAndSize (page, font, 12); 
     HPDF_Page_BeginText(page);
     
     int pos = 0;
     for(;;){
-        int b = HPDF_Page_MeasureText(page, line_one, page_limit, HPDF_TRUE, NULL);
-        printf("text measuretext:%d\n", b);
+        int bytes = HPDF_Page_MeasureText(page, line_one, page_limit, HPDF_TRUE, NULL);
+        printf("************b*****************\n");
+        printf("%d\n", bytes);
+        printf("************b*****************\n");
 
         char *start = &line_one[pos];
-        char *end = &line_one[pos + b];
-        while(*end != ' '){
-            end-=1;
-        }
-        end+=1;
-
-        char *curr_string = (char *) malloc(b);
-        memcpy(curr_string, start, end - start);
+        char *end = &line_one[pos + bytes];
+        size_t length = end - start;
+        printf("************length*****************\n");
+        printf("%d\n", length);
+        printf("************length*****************\n");
         
-        int a = HPDF_Page_TextWidth(page, curr_string);
-        printf("text width:%d\n", a);
-
-
-        HPDF_Page_TextOut (page, 25, pageHeight - 25, curr_string);
-
-        HPDF_Page_TextOut (page, 25, pageHeight - 25 - f_real_h - f_real_h, "YOLOLLLLO I'M SO HAPPPPY HAPPY");
-
+        
+        char *curr_string = (char *) malloc(length + 1); //had this to bytes
+        memcpy(curr_string, start, length); //had this to bytes
+        curr_string[length] = '\0';
+        
+        printf("************curr_string*****************\n");
+        printf("%s\n", curr_string);
+        printf("************curr_string*****************\n");
+        HPDF_Page_TextOut (page, 25, currentY, curr_string);
         free(curr_string);
-        break;
+
+        
+        currentY = currentY - 2 * f_real_h;
+        line_one = line_one + bytes;
+        if (strlen(line_one) <= bytes){
+            break;
+        }
+
     }
 
       
