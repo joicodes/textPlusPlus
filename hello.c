@@ -1,3 +1,8 @@
+/*
+ * << Haru Free PDF Library 2.0.0 >> -- attach.c
+ * Copyright (c) 1999-2006 Takeshi Kanno <takeshi_kanno@est.hi-ho.ne.jp>
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -5,33 +10,30 @@
 #include "hpdf.h"
 
 
+// Document Handling
 char fname[256];
 HPDF_Doc pdf;
 
-
+// Page Handling 
 HPDF_Page firstPage;
 HPDF_Page currentPage;
-int pageNumber;
-
-float textWidth;
-
-HPDF_Font defaultFont;
-HPDF_Font currentFont;
-HPDF_REAL defaultSize;
-HPDF_REAL currentSize;
-char *style;
-
 
 HPDF_REAL pageHeight;
 HPDF_REAL pageWidth;
 
+int pageNumber;
 
+//Text Handling
 HPDF_REAL currentX;
 HPDF_REAL currentY;
 
-extern void start();
+float tw;
 
-jmp_buf env;
+// Font Handling
+HPDF_Font defaultFont;
+HPDF_Font currentFont;
+HPDF_REAL defaultSize;
+HPDF_REAL currentSize;
 
 HPDF_Font helvetica;
 HPDF_Font helveticaItalic;
@@ -45,6 +47,15 @@ HPDF_Font courier;
 HPDF_Font courierItalic;
 HPDF_Font courierBold;
 
+float textWidth;
+char *alignment;
+
+
+extern void start();
+
+jmp_buf env;
+
+// Error Handling
 
 void
 error_handler (HPDF_STATUS   error_no,
@@ -57,25 +68,49 @@ error_handler (HPDF_STATUS   error_no,
 }
 
 
+// PAGE HANDLING FUNCTIONS 
+
 int  addPage(){
 
-    HPDF_Page newPage;
-    newPage = HPDF_AddPage(pdf);
+	/* creates and adds new page to PDF */
+	HPDF_Page newPage;
+	newPage = HPDF_AddPage(pdf);
 
-    currentPage = newPage;
+	/* updates current page and page number */
+	currentPage = newPage;
+	pageNumber = pageNumber + 1;
 
-    pageNumber = pageNumber + 1;
+	/* sets the font, size, and line width for page */
+	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
+	HPDF_Page_SetLineWidth(currentPage, 1);
 
-    HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
-    HPDF_Page_SetLineWidth(currentPage, 1);
+    /* initializes value for pageHeight and pageWidth */
+    pageHeight = HPDF_Page_GetHeight(currentPage);
+    pageWidth = HPDF_Page_GetWidth(currentPage);
 
-    currentX = 0;
-    currentY = pageHeight;
-    
-    return 0;
+	/* sets  X and Y cooridintes to top left of page */
+	currentX = 0;
+	currentY = pageHeight;
 
+	return 0;
 }
 
+// TEXT HANDLING FUNCTIONS 
+
+int left(){
+	alignment = "left";
+	return 0;
+}
+
+int right(){
+	alignment = "right";
+	return 0;
+}
+
+int center(){
+	alignment = "center";
+	return 0;
+}
 
 int write( char * text){
     HPDF_Rect rect;
@@ -121,196 +156,147 @@ int moveTo(int x , int y){
 }
 
 
-int bold( ){
+// FONT HANDLING FUNCTIONS 
 
-	// Helvetica Bold
+int bold(){
 
+	/* changes current font to Helvetica Bold */
 	if ((currentFont == helvetica) || (currentFont == helveticaItalic)){
-		
-
 		currentFont = helveticaBold;
 		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
-	
 	}
-	
-	// Times Bold
 
+	/* changes current font to Times Bold */
 	if ((currentFont == times) || (currentFont == timesItalic)){
-
 		currentFont = timesBold;
 		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
-
 	}
 
-	// Courier Bold
-
+	/* changes current font to Courier Bold */
 	if ((currentFont == courier) || (currentFont == courierItalic)){
-
-
 		currentFont = courierBold;
 		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
-
 	}
 
 	return 0;
-
 }
 
-int italic( ){
+int italic(){
 
-	// Helvetica Italic
-
-	if ((currentFont == helvetica) || (currentFont == helveticaBold)){
-		
+	/* changes current font to Helvetica Italic */
+	if ((currentFont == helvetica) || (currentFont == helveticaBold)){	
 		currentFont = helveticaItalic;
 		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	}
-	
-	// Times Italic
 
+	/* changes current font to Times Italic */
 	if ((currentFont == times) || (currentFont == timesBold)){
-
 		currentFont = timesItalic;
 		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
-
 	}
 
-	// Courier Italic
-
+	/* changes current font to Courier Italic */
 	if ((currentFont == courier) || (currentFont == courierBold)){
-
 		currentFont = courierItalic;
 		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	}
 
 	return 0;
-
 }
 
+int regular(){
 
-int regular( ){
-
-	// Helvetica 
-
+	/* changes current font to Helvetica */ 
 	if ((currentFont == helveticaItalic) || (currentFont == helveticaBold)){
-
 		currentFont = helvetica;
 		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
-
 	}
-	
-	// Times Italic
 
+	/* changes current font to Times */
 	if ((currentFont == timesItalic) || (currentFont == timesBold)){
-
 		currentFont = times;
 		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	}
 
-	// Courier Italic
-
+	/* changes current font to Courier */
 	if ((currentFont == courierItalic) || (currentFont == courierBold)){
-
 		currentFont = courier;
 		HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
-
-
 	}
 
 	return 0;
-
 }
 
+int changeColor( float red, float green, float blue){
 
-int changeColor( char * colorName ){
-	
-	if (strcmp( colorName, "black") == 0){
-		HPDF_Page_SetRGBFill(currentPage, 0.0, 0.0, 0.0);
-	}
-
-	if (strcmp( colorName, "red") == 0){
-		HPDF_Page_SetRGBFill(currentPage, 1.0, 0.0, 0.0);
-	}
-	if (strcmp( colorName, "green") == 0){
-		HPDF_Page_SetRGBFill(currentPage, 0.0, 1.0, 0.0);
-	}
-	if (strcmp( colorName, "blue") == 0){
-		HPDF_Page_SetRGBFill(currentPage, 0.0, 0.0, 1.0);
-	}
-
+	/* sets the RGB values for the font */
+	HPDF_Page_SetRGBFill(currentPage, red, green, blue);
 	return 0;
 } 
 
+int changeFontSize (char * font, int newSize){
 
-
-int changeFontSize (char * font, int newSize ){
-
-	// Note FIX PARAMETERS to char * newFont, int newSize, hard coding for now
-	//char * newFont = "Courier";
-
+	/* updates current font and size */
 	currentFont = HPDF_GetFont(pdf, font, NULL);
 	currentSize = newSize;
+
+	/* set new font and size to current page */
 	HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize);
 	return 0;
 }
 
 
+// SHAPE + LINE HANDLING FUNCTIONS 
 
-
-int drawLine( int num){
-
-	int startX;
-	int endX;
-	int startY;
-	int endY;
-
-	// sample input
-	startX = 10;
-	startY = 400;
-	endX = startX + 200;
-	endY = startY;
+int drawLine( int startX, int startY, int endX, int endY){
 	
+	// Draws a line from (startX, startY) to (endX, endY)
 	HPDF_Page_MoveTo(currentPage, startX, startY);
 	HPDF_Page_LineTo(currentPage, endX, endY);
 	HPDF_Page_Stroke(currentPage);
 
 	return 0;
-
 }
 
-int drawRectangle( int num){
+int drawRectangle( int lowerLeftX, int lowerLeftY, int rectangleWidth, int rectangleHeight){
 	
-	// lower left point of rectangle	
-	int x;  
-	int y;
+	/* draws a rectangle on dimentions (rectangleWidth x rectangleHeight) 
+	 with bottom left corner of rectangle at (lowerLeftX, lowerLeftY) */
 
-	// rectangle dimensions
-	int height;
-	int width;
-
-
-	//sample input
-	x = 30;
-	y= 200;
-	width  = 100;
-	height = 100;
-
-	HPDF_Page_Rectangle(currentPage, x, y, width, height);
+	HPDF_Page_Rectangle(currentPage, lowerLeftX, lowerLeftY, rectangleWidth, rectangleHeight);
 	HPDF_Page_Stroke(currentPage);
 
 	return 0;
 }
 
 
+// GETTER FUNCTIONS
 
 
+int getPageNumber(){
+	return pageNumber;
+}
+
+float getTextWidth(char *text){
+	tw = HPDF_Page_TextWidth(currentPage, text);
+	return tw;
+} 
+
+float getPageHeight(){
+	
+	return pageHeight;
+} 
+
+float getPageWidth(){
+	
+	return pageWidth;
+} 
 
 
+int main(int argc){
 
-
-int main(int argc)
-{
-    // Starts Document 
+    /* starts program
+	 * creates a PDF document */
 
     pdf = HPDF_New(error_handler, NULL);   
 
@@ -320,7 +306,7 @@ int main(int argc)
     } 
 	
 	
-   // Initializes Fonts
+    /* initializing fonts */
 	helvetica = HPDF_GetFont(pdf, "Helvetica", NULL);
 	helveticaItalic = HPDF_GetFont(pdf, "Helvetica-Oblique", NULL);
 	helveticaBold = HPDF_GetFont(pdf, "Helvetica-Bold", NULL);
@@ -333,44 +319,40 @@ int main(int argc)
 	courierItalic = HPDF_GetFont(pdf, "Courier-Oblique", NULL);
 	courierBold = HPDF_GetFont(pdf, "Courier-Bold", NULL);
 
-  // Creates First Page
 
+	/* creates and adds new page to PDF */
     firstPage = HPDF_AddPage(pdf); 
     currentPage = firstPage;
     pageNumber = 1;
 
 
-    // Sets default color, size, and font
-
-    //HPDF_Page_SetRGBFill(firstPage, 0.0, 0.0, 0.0);
+    /* sets default color, size, and font */
     defaultFont = HPDF_GetFont (pdf, "Helvetica", NULL);
     currentFont = defaultFont;
     defaultSize = 12;
     currentSize = defaultSize;
     HPDF_Page_SetFontAndSize(firstPage, defaultFont, defaultSize); 
 
+	/* sets the default alignment to left*/
+	alignment = "left";
+
+    /* initializes value for pageHeight and pageWidth */
     pageHeight = HPDF_Page_GetHeight(firstPage);
     pageWidth = HPDF_Page_GetWidth(firstPage);
 
+    /* sets line  stroke width */
     HPDF_Page_SetLineWidth(firstPage, 1);
 
+	/* sets  X and Y cooridintes to top left of page */
     currentX = 0;
     currentY = pageHeight;
 
-    //HPDF_Page_BeginText (currentPage);
-
-
-    //HPDF_Page_TextOut (currentPage, 60, 500, page_title); // prints text in specified position
-
-
-
-    // Program starts
+    /* program starts */
     start();
 
 
-
-    // Ends program
-    //HPDF_Page_EndText (currentPage);
+    /* ends program 
+     * saves file as 'text.pdf' */
     HPDF_SaveToFile (pdf, "text.pdf");
     HPDF_Free (pdf);
 
