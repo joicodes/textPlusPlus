@@ -54,7 +54,7 @@ let check (globals, functions) =
        locals = []; body = [] }
 
        (StringMap.add "write"
-       { typ = Void; fname = "write"; formals = [(String, "x")];
+       { typ = Void; fname = "write"; formals = [(String, "x"); (Int, "y")];
           locals = []; body = [] }
 
         (StringMap.add "textOut"

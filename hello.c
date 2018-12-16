@@ -112,25 +112,92 @@ int center(){
 	return 0;
 }
 
-int write( char * text){
-    HPDF_Rect rect;
+int write( char * text, int align){
+    // align: 0 means left, 1 means right, 2 means center
 
-    //currentX = 0;
-    //currentY = pageHeight;
+    currentX = currentX + 25;
+    currentY = currentY - 25;
 
-    rect.left = currentX + 25; // 25 is for margins
-    rect.top = currentY - 25; // 25 is for margins
-    rect.right = pageWidth - 25;
-    rect.bottom = 0;
+    int right_margin = pageWidth - 25;
+    int left_margin = 25;
+    int page_limit = pageWidth - (2 * left_margin);
 
+    int f_height_point = HPDF_Font_GetCapHeight(currentFont);
+    int f_real_h = f_height_point * currentSize / 1000.0;
+
+    int last_line = 0;
+
+    int pos = 0;
+
+    int textWidth = 0;
+    int move_right = 0;
+
+    HPDF_Page_SetFontAndSize(currentPage, currentFont, currentSize); 
     HPDF_Page_BeginText(currentPage);
-    HPDF_Page_TextRect(currentPage, rect.left, rect.top, rect.right, rect.bottom, text, HPDF_TALIGN_LEFT, NULL);
-    HPDF_Page_EndText(currentPage);
 
-    //update currentX and currentY?
+    for(;;){
+
+    	int bytes = HPDF_Page_MeasureText(currentPage, text, page_limit, HPDF_TRUE, NULL);
+        char *start = &text[pos];
+        char *end = &text[pos + bytes];
+        size_t length = end - start;
+        
+        char *curr_string = (char *) malloc(length + 1);
+        memcpy(curr_string, start, length); 
+        curr_string[length] = '\0';
+
+        switch(align) {
+        	case 0: ; //left alighnment
+        		HPDF_Page_TextOut (currentPage, currentX, currentY, curr_string);
+        		break;
+
+        	case 1: ; //right alighnment
+        		textWidth = HPDF_Page_TextWidth(currentPage, curr_string);
+                move_right = (pageWidth - 25) - (textWidth + 25);
+                HPDF_Page_TextOut (currentPage, 25 + move_right, currentY, curr_string);
+                break;
+
+        	case 2: ; //means center
+        		textWidth = HPDF_Page_TextWidth(currentPage, curr_string);
+                move_right = ((pageWidth - 25) - (textWidth + 25)) / 2;
+                HPDF_Page_TextOut (currentPage, 25 + move_right, currentY, curr_string);
+                break;
+        }
+        
+        free(curr_string);
+        currentY = currentY - 2 * f_real_h;
+        text = text + bytes;
+
+        //for the case the person writes stuff thats longer
+        //than the page can fit
+        if (currentY <= 25){ //here 25 is the bottom margin
+            HPDF_Page_EndText (currentPage);
+
+            HPDF_Page newPage;
+            newPage = HPDF_AddPage(pdf);
+
+            currentPage = newPage;
+
+            HPDF_Page_BeginText (currentPage);
+            HPDF_Page_SetFontAndSize (currentPage, currentFont, currentSize);
+            
+            currentX = 25; //set it to the margin
+            currentY = pageHeight - 25;
+        }
+
+        if (last_line == 1){
+            break;
+        }
+
+        if (strlen(text) <= bytes){
+            last_line = 1;
+        }
+
+    }
+
+    HPDF_Page_EndText (currentPage);
 
     return 0;
-
 }
 
 int textOut( char * text, int x, int y){

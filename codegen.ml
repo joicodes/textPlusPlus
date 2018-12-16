@@ -76,7 +76,7 @@ let translate (globals, functions) =
       L.declare_function "center" center_t the_module in
 
   let write_t : L.lltype =
-    L.function_type i32_t [| str_t |] in
+    L.function_type i32_t [| str_t; i32_t |] in
   let write_func : L.llvalue =
       L.declare_function "write" write_t the_module in
 
@@ -263,8 +263,8 @@ let translate (globals, functions) =
     | SCall ("center", []) ->
       L.build_call center_func [| |] "center" builder
 
-    | SCall ("write", [e]) ->
-      L.build_call write_func [| (expr builder e) |] "write" builder
+    | SCall ("write", [e; y]) ->
+      L.build_call write_func [| (expr builder e) ; (expr builder y) |] "write" builder
     | SCall ("textOut", [e; y; z]) ->
       L.build_call textOut_func [| (expr builder e); (expr builder y); (expr builder z) |] "textOut" builder
     | SCall ("moveTo", [e; y]) ->
