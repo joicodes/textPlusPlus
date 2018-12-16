@@ -81,7 +81,7 @@ let translate (globals, functions) =
       L.declare_function "write" write_t the_module in
 
   let textOut_t : L.lltype =
-    L.function_type i32_t [| str_t ; i32_t ; i32_t|] in
+    L.function_type i32_t [| str_t ; i32_t ; i32_t ; i32_t|] in
   let textOut_func : L.llvalue =
       L.declare_function "textOut" textOut_t the_module in 
 
@@ -265,8 +265,8 @@ let translate (globals, functions) =
 
     | SCall ("write", [e; y]) ->
       L.build_call write_func [| (expr builder e) ; (expr builder y) |] "write" builder
-    | SCall ("textOut", [e; y; z]) ->
-      L.build_call textOut_func [| (expr builder e); (expr builder y); (expr builder z) |] "textOut" builder
+    | SCall ("textOut", [e; y; z; m]) ->
+      L.build_call textOut_func [| (expr builder e); (expr builder y); (expr builder z); (expr builder m) |] "textOut" builder
     | SCall ("moveTo", [e; y]) ->
       L.build_call moveTo_func [| (expr builder e); (expr builder y)|] "moveTo" builder	  
 
