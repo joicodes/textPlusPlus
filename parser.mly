@@ -9,7 +9,7 @@ open Ast
 %token RETURN IF ELSE FOR WHILE INT BOOL FLOAT STRING VOID DEFINE
 %token <int> LITERAL
 %token <bool> BLIT
-%token <string> SLITERAL
+%token <string> STRLITERAL
 %token <string> ID FLIT
 %token EOF
 
@@ -87,7 +87,7 @@ expr_opt:
 
 expr:
     LITERAL          { Literal($1)            }
-  | SLITERAL         { SLiteral($1)           }
+  | STRLITERAL         { StrLiteral($1)           }
   | FLIT	     { Fliteral($1)                 }
   | BLIT             { BoolLit($1)            }
   | ID               { Id($1)                 }

@@ -270,8 +270,8 @@ let translate (globals, functions) =
 
     (* Construct code for an expression; return its value *)
     let rec expr builder ((_, e) : sexpr) = match e with
-	SLiteral i  -> L.const_int i32_t i
-      | SSLiteral i -> L.build_global_stringptr i "string" builder
+	      SLiteral i  -> L.const_int i32_t i
+      | SStrLiteral i -> L.build_global_stringptr i "string" builder
       | SBoolLit b  -> L.const_int i1_t (if b then 1 else 0)
       | SFliteral l -> L.const_float_of_string float_t l
       | SNoexpr     -> L.const_int i32_t 0
