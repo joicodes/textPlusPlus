@@ -28,7 +28,6 @@ let translate (globals, functions) =
 
   (* Get types from the context *)
   let i32_t      = L.i32_type    context
-  and i8_t       = L.i8_type     context
   and i1_t       = L.i1_type     context
   and float_t    = L.double_type context
   and str_t      = L.pointer_type (L.i8_type context)
@@ -127,7 +126,7 @@ let translate (globals, functions) =
   let drawRectangle_t : L.lltype =
       L.function_type i32_t [| i32_t; i32_t; i32_t; i32_t |] in
   let drawRectangle_func : L.llvalue =
-      L.declare_function "drawRectangle" drawLine_t the_module in 
+      L.declare_function "drawRectangle" drawRectangle_t the_module in 
   
       
 
@@ -240,9 +239,6 @@ let translate (globals, functions) =
   let build_function_body fdecl =
     let (the_function, _) = StringMap.find fdecl.sfname function_decls in
     let builder = L.builder_at_end context (L.entry_block the_function) in
-
-    let int_format_str = L.build_global_stringptr "%d\n" "fmt" builder
-    and float_format_str = L.build_global_stringptr "%g\n" "fmt" builder in
 
     (* Construct the function's "locals": formal arguments and locally
        declared variables.  Allocate each on the stack, initialize their
@@ -383,8 +379,6 @@ let translate (globals, functions) =
       L.build_call heading5_func [| |] "heading5" builder  
     | SCall ("heading6", []) ->
       L.build_call heading6_func [| |] "heading6" builder
-    | SCall ("heading6", []) ->
-      L.build_call heading6_func [| |] "heading6" builder 
     | SCall ("getCurrentY", []) ->
       L.build_call getCurrentY_func [| |] "getCurrentY" builder 
     | SCall ("getCurrentX", []) ->
