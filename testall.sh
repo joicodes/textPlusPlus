@@ -95,7 +95,8 @@ Check() {
     Run "$TEXTPLUSPLUS" "$1" ">" "${basename}.ll" &&
     Run "$LLC" "-relocation-model=pic" "${basename}.ll" ">" "${basename}.s" &&
     Run "$CC" "-o" "${basename}.exe" "${basename}.s" "hello.o " "-lhpdf" &&
-    Run "./${basename}.exe" > "${basename}.out" &&
+    Run "./${basename}.exe" &&
+    Run "pdf2txt" "-o" "${basename}.out" "text.pdf" &&
     Compare ${basename}.out ${reffile}.out ${basename}.diff
 
     # Report the status and clean up the generated files
