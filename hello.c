@@ -101,7 +101,6 @@ int left(){
 
 	alignment = 0;
 	return 0;
-
 }
 
 int right(){
@@ -114,7 +113,7 @@ int center(){
 	return 0;
 }
 
-int write( char * text, int align){
+int write(char * text){
     // align: 0 means left, 1 means right, 2 means center
 
     int right_margin = pageWidth - 25;
@@ -145,7 +144,7 @@ int write( char * text, int align){
         memcpy(curr_string, start, length); 
         curr_string[length] = '\0';
 
-        switch(align) {
+        switch(alignment) {
         	case 0: ; //left alighnment
         		HPDF_Page_TextOut (currentPage, currentX, currentY, curr_string);
         		break;
@@ -199,7 +198,7 @@ int write( char * text, int align){
     return 0;
 }
 
-int textOut( char * text, int x, int y, int align){
+int textOut(int x, int y, char * text){
 	// align: 0 means left, 1 means right, 2 means center
 
     currentX = x;
@@ -233,7 +232,7 @@ int textOut( char * text, int x, int y, int align){
         memcpy(curr_string, start, length); 
         curr_string[length] = '\0';
 
-        switch(align) {
+        switch(alignment) {
         	case 0: ; //left alighnment
         		HPDF_Page_TextOut (currentPage, currentX, currentY, curr_string);
         		break;
@@ -442,6 +441,10 @@ float getPageWidth(){
 	
 	return pageWidth;
 } 
+
+int getCurrentX(){
+    return (int)currentX;
+}
 
 int getCurrentY(){
     return (int)currentY;

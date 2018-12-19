@@ -1,7 +1,9 @@
 def void start()
 {
-  
-  int y;
-  y = getCurrentY();
-  textOut("Hello World", 25, y, 0);
+	int x;
+	int y;
+	x = getCurrentX();
+	y = getCurrentY();
+
+  	textOut(x, y, "Hello World!!!!!!");
 }

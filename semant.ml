@@ -153,10 +153,14 @@ let check (globals, functions) =
 
         (StringMap.add "getCurrentY"
         { typ = Int; fname = "getCurrentY"; formals = [];
+            locals = []; body = [] }
+
+        (StringMap.add "getCurrentX"
+        { typ = Int; fname = "getCurrentX"; formals = [];
             locals = []; body = [] } StringMap.empty
 
 
-     ))))))))))))))))))))))))))
+     )))))))))))))))))))))))))))
   
   in
 
