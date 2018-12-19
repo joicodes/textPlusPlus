@@ -54,11 +54,11 @@ let check (globals, functions) =
        locals = []; body = [] }
 
        (StringMap.add "write"
-       { typ = Void; fname = "write"; formals = [(String, "x"); (Int, "y")];
+       { typ = Void; fname = "write"; formals = [(String, "x")];
           locals = []; body = [] }
 
         (StringMap.add "textOut"
-      { typ = Void; fname = "textOut"; formals = [(String, "x"); (Int, "y"); (Int, "z"); (Int, "m")];
+      { typ = Void; fname = "textOut"; formals = [(Int, "y"); (Int, "z"); (String, "x");];
         locals = []; body = [] }
 
         ( StringMap.add "moveTo"
