@@ -137,17 +137,17 @@ let translate (globals, functions) =
       L.declare_function "pageNumber" pageNumber_t the_module in
 
   let getTextWidth_t : L.lltype =
-    L.function_type float_t [| str_t |] in
+    L.function_type i32_t [| str_t |] in
   let getTextWidth_func : L.llvalue =
       L.declare_function "getTextWidth" getTextWidth_t the_module in
  
   let getPageHeight_t : L.lltype =
-    L.function_type float_t [|  |] in
+    L.function_type i32_t [|  |] in
   let getPageHeight_func : L.llvalue =
       L.declare_function "getPageHeight" getPageHeight_t the_module in
 
   let getPageWidth_t : L.lltype =
-    L.function_type float_t [|  |] in
+    L.function_type i32_t [|  |] in
   let getPageWidth_func : L.llvalue =
       L.declare_function "getPageWidth" getPageWidth_t the_module in
   

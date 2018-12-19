@@ -426,20 +426,18 @@ int pageNumber(int x, int y){
 
 
 // Getter Functions
-float getTextWidth(char *text){
-
-	tw = HPDF_Page_TextWidth(currentPage, text);
-	return tw;
+int getTextWidth(char *text){
+	return HPDF_Page_TextWidth(currentPage, text);
 } 
 
-float getPageHeight(){
+int getPageHeight(){
 	
-	return 1.0;
+	return (int)pageHeight;
 } 
 
-float getPageWidth(){
+int getPageWidth(){
 	
-	return pageWidth;
+	return (int)pageWidth;
 } 
 
 int getCurrentX(){
@@ -449,9 +447,6 @@ int getCurrentX(){
 int getCurrentY(){
     return (int)currentY;
 }
-
-
-
 
 // FUNCTIONS FOR STANDARD LIBRARY
 

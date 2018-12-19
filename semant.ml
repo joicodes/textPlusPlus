@@ -106,24 +106,24 @@ let check (globals, functions) =
 
 
         (StringMap.add "getTextWidth"
-     { typ = Void; fname = "getTextWidth"; formals = [(String, "x")];
+     { typ = Int; fname = "getTextWidth"; formals = [(String, "x")];
         locals = []; body = [] }
 
         (StringMap.add "getPageHeight"
-     { typ = Void; fname = "getPageHeight"; formals = [];
+     { typ = Int; fname = "getPageHeight"; formals = [];
         locals = []; body = [] }
 
         (StringMap.add "getPageWidth"
-     { typ = Void; fname = "getPageWidth"; formals = [];
+     { typ = Int; fname = "getPageWidth"; formals = [];
         locals = []; body = [] } 
 
 
         (StringMap.add "pageTitle"
-     { typ = Void; fname = "getPageWidth"; formals = [(String, "x");];
+     { typ = Void; fname = "pageTitle"; formals = [(String, "x");];
         locals = []; body = [] } 
 
         (StringMap.add "table"
-        { typ = Void; fname = "getPageWidth"; formals = [(Int, "x"); (Int, "y"); (Int, "z"); (Int, "a")];
+        { typ = Void; fname = "table"; formals = [(Int, "x"); (Int, "y"); (Int, "z"); (Int, "a")];
            locals = []; body = [] } 
 
         

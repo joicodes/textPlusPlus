@@ -2,8 +2,8 @@ def void start()
 {
 	int x;
 	int y;
-	x = getCurrentX();
-	y = getCurrentY();
+	x = getPageWidth();
+	y = getTextWidth("heyyyyyyy");
 
-  	textOut(x, y, "Hello World!!!!!!");
+  	textOut(x - 200, y, "Hello World Maria!!!!!!");
 }
