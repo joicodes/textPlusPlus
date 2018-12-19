@@ -48,7 +48,7 @@ HPDF_Font courierItalic;
 HPDF_Font courierBold;
 
 float textWidth;
-char *alignment;
+int alignment;
 
 
 extern void start();
@@ -99,18 +99,18 @@ int  addPage(){
 
 int left(){
 
-	alignment = "left";
+	alignment = 0;
 	return 0;
 
 }
 
 int right(){
-	alignment = "right";
+	alignment = 1;
 	return 0;
 }
 
 int center(){
-	alignment = "center";
+	alignment = 2;
 	return 0;
 }
 
@@ -617,7 +617,7 @@ int main(int argc){
     HPDF_Page_SetFontAndSize(firstPage, defaultFont, defaultSize); 
 
 	/* sets the default alignment to left*/
-	alignment = "left";
+	alignment = 0;
 
     /* initializes value for pageHeight and pageWidth */
     pageHeight = HPDF_Page_GetHeight(firstPage);
