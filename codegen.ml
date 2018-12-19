@@ -195,6 +195,14 @@ let translate (globals, functions) =
   L.function_type i32_t [| |] in
   let getCurrentX_func : L.llvalue =
     L.declare_function "getCurrentX" getCurrentX_t the_module in
+  let getCapHeight_t : L.lltype =
+  L.function_type i32_t [| |] in
+  let getCapHeight_func : L.llvalue =
+    L.declare_function "getCapHeight" getCapHeight_t the_module in
+  let getLowHeight_t : L.lltype =
+  L.function_type i32_t [| |] in
+  let getLowHeight_func : L.llvalue =
+    L.declare_function "getLowHeight" getLowHeight_t the_module in
 
       
 
@@ -362,6 +370,10 @@ let translate (globals, functions) =
       L.build_call getCurrentY_func [| |] "getCurrentY" builder 
     | SCall ("getCurrentX", []) ->
       L.build_call getCurrentX_func [| |] "getCurrentX" builder
+    | SCall ("getCapHeight", []) ->
+      L.build_call getCapHeight_func [| |] "getCapHeight" builder
+    | SCall ("getLowHeight", []) ->
+      L.build_call getLowHeight_func [| |] "getLowHeight" builder
 
 
 

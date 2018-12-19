@@ -2,8 +2,7 @@ def void start()
 {
 	int x;
 	int y;
-	x = getPageWidth();
-	y = getTextWidth("heyyyyyyy");
+	x = getLowHeight();
 
-  	textOut(x - 200, y, "Hello World Maria!!!!!!");
+  	textOut(x, 300, "Hello World MJ!!!!!!");
 }

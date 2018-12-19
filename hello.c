@@ -88,9 +88,9 @@ int  addPage(){
     pageHeight = HPDF_Page_GetHeight(currentPage);
     pageWidth = HPDF_Page_GetWidth(currentPage);
 
-	/* sets  X and Y cooridintes to top left of page */
-	currentX = 0;
-	currentY = pageHeight;
+	/* sets  X and Y cooridintes to top left of page with margins*/
+	currentX = 25; 
+	currentY = pageHeight - 25;
 
 	return 0;
 }
@@ -111,6 +111,16 @@ int right(){
 int center(){
 	alignment = 2;
 	return 0;
+}
+
+int getCapHeight(){
+    int f_height_point = HPDF_Font_GetCapHeight(currentFont);
+    return (int)(f_height_point * currentSize / 1000.0);
+}
+
+int getLowHeight(){
+    int f_height_point = HPDF_Font_GetXHeight(currentFont);
+    return (int)(f_height_point * currentSize / 1000.0);
 }
 
 int write(char * text){
