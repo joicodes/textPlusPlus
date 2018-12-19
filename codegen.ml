@@ -301,8 +301,8 @@ let translate (globals, functions) =
 
     | SCall ("write", [e]) ->
       L.build_call write_func [| (expr builder e) |] "write" builder
-    | SCall ("textOut", [e; y; z;]) ->
-      L.build_call textOut_func [| (expr builder e); (expr builder y); (expr builder z); |] "textOut" builder
+    | SCall ("textOut", [e; y; z]) ->
+      L.build_call textOut_func [| (expr builder e); (expr builder y); (expr builder z) |] "textOut" builder
     | SCall ("moveTo", [e; y]) ->
       L.build_call moveTo_func [| (expr builder e); (expr builder y)|] "moveTo" builder	  
 
