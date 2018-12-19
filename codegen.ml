@@ -203,6 +203,10 @@ let translate (globals, functions) =
   L.function_type i32_t [| |] in
   let getLowHeight_func : L.llvalue =
     L.declare_function "getLowHeight" getLowHeight_t the_module in
+  let getTextBytes_t : L.lltype =
+  L.function_type i32_t [| str_t; i32_t; i32_t |] in
+  let getTextBytes_func : L.llvalue =
+    L.declare_function "getTextBytes" getTextBytes_t the_module in
 
       
 
@@ -374,6 +378,8 @@ let translate (globals, functions) =
       L.build_call getCapHeight_func [| |] "getCapHeight" builder
     | SCall ("getLowHeight", []) ->
       L.build_call getLowHeight_func [| |] "getLowHeight" builder
+    | SCall ("getTextBytes", [x;y;z]) ->
+      L.build_call getTextBytes_func [| (expr builder x); (expr builder y); (expr builder z) |] "getTextBytes" builder
 
 
 

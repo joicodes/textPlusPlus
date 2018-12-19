@@ -165,10 +165,13 @@ let check (globals, functions) =
 
         (StringMap.add "getLowHeight"
         { typ = Int; fname = "getLowHeight"; formals = [];
+            locals = []; body = [] }
+
+        (StringMap.add "getTextBytes"
+        { typ = Int; fname = "getTextBytes"; formals = [(String, "x"); (Int, "y"); (Int, "z")];
             locals = []; body = [] } StringMap.empty
-
-
-     )))))))))))))))))))))))))))))
+            
+     ))))))))))))))))))))))))))))))
   
   in
 

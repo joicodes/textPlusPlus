@@ -123,6 +123,15 @@ int getLowHeight(){
     return (int)(f_height_point * currentSize / 1000.0);
 }
 
+//gets how much bytes can fit in one line given some margins on a line
+int getTextBytes(char * text, int lmargin, int rmargin){
+    ///assuming left and right margins are the same
+    int page_limit = pageWidth - lmargin - rmargin;
+    return (int)( HPDF_Page_MeasureText(currentPage, text, page_limit, HPDF_TRUE, NULL));
+}
+
+
+
 int write(char * text){
     // align: 0 means left, 1 means right, 2 means center
 
