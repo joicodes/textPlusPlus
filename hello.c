@@ -117,9 +117,6 @@ int center(){
 int write( char * text, int align){
     // align: 0 means left, 1 means right, 2 means center
 
-    currentX = currentX + 25;
-    currentY = currentY - 25;
-
     int right_margin = pageWidth - 25;
     int left_margin = 25;
     int page_limit = pageWidth - (2 * left_margin);
@@ -156,13 +153,13 @@ int write( char * text, int align){
         	case 1: ; //right alighnment
         		textWidth = HPDF_Page_TextWidth(currentPage, curr_string);
                 move_right = (pageWidth - 25) - (textWidth + 25);
-                HPDF_Page_TextOut (currentPage, 25 + move_right, currentY, curr_string);
+                HPDF_Page_TextOut (currentPage, currentX + move_right, currentY, curr_string);
                 break;
 
         	case 2: ; //means center
         		textWidth = HPDF_Page_TextWidth(currentPage, curr_string);
                 move_right = ((pageWidth - 25) - (textWidth + 25)) / 2;
-                HPDF_Page_TextOut (currentPage, 25 + move_right, currentY, curr_string);
+                HPDF_Page_TextOut (currentPage, currentX + move_right, currentY, curr_string);
                 break;
         }
         
@@ -204,7 +201,6 @@ int write( char * text, int align){
 
 int textOut( char * text, int x, int y, int align){
 	// align: 0 means left, 1 means right, 2 means center
-	//no margins being included here?
 
     currentX = x;
     currentY = y;
@@ -245,13 +241,13 @@ int textOut( char * text, int x, int y, int align){
         	case 1: ; //right alighnment
         		textWidth = HPDF_Page_TextWidth(currentPage, curr_string);
                 move_right = (pageWidth - 25) - (textWidth + 25);
-                HPDF_Page_TextOut (currentPage, 25 + move_right, currentY, curr_string);
+                HPDF_Page_TextOut (currentPage, currentX + move_right, currentY, curr_string);
                 break;
 
         	case 2: ; //means center
         		textWidth = HPDF_Page_TextWidth(currentPage, curr_string);
                 move_right = ((pageWidth - 25) - (textWidth + 25)) / 2;
-                HPDF_Page_TextOut (currentPage, 25 + move_right, currentY, curr_string);
+                HPDF_Page_TextOut (currentPage, currentX + move_right, currentY, curr_string);
                 break;
         }
         
@@ -447,6 +443,10 @@ float getPageWidth(){
 	return pageWidth;
 } 
 
+int getCurrentY(){
+    return (int)currentY;
+}
+
 
 
 
@@ -627,8 +627,8 @@ int main(int argc){
     HPDF_Page_SetLineWidth(firstPage, 1);
 
 	/* sets  X and Y cooridintes to top left of page */
-    currentX = 0;
-    currentY = pageHeight;
+    currentX = 25;
+    currentY = pageHeight - 25;
 
     /* program starts */
     start();
