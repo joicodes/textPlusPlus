@@ -207,8 +207,23 @@ let translate (globals, functions) =
   L.function_type i32_t [| str_t; i32_t; i32_t |] in
   let getTextBytes_func : L.llvalue =
     L.declare_function "getTextBytes" getTextBytes_t the_module in
-
-      
+    (***)
+  let setRMargin_t : L.lltype =
+  L.function_type i32_t [| i32_t|] in
+  let setRMargin_func : L.llvalue =
+  L.declare_function "setRMargin" setRMargin_t the_module in
+  let setLMargin_t : L.lltype =
+  L.function_type i32_t [| i32_t|] in
+  let setLMargin_func : L.llvalue =
+  L.declare_function "setLMargin" setLMargin_t the_module in
+  let setTopMargin_t : L.lltype =
+  L.function_type i32_t [| i32_t |] in
+  let setTopMargin_func : L.llvalue =
+  L.declare_function "setTopMargin" setTopMargin_t the_module in
+  let setBotMargin_t : L.lltype =
+  L.function_type i32_t [| i32_t |] in
+  let setBotMargin_func : L.llvalue =
+  L.declare_function "setBotMargin" setBotMargin_t the_module in
 
   (* Define each function (arguments and return type) so we can 
      call it even before we've created its body *)
@@ -380,7 +395,14 @@ let translate (globals, functions) =
       L.build_call getLowHeight_func [| |] "getLowHeight" builder
     | SCall ("getTextBytes", [x;y;z]) ->
       L.build_call getTextBytes_func [| (expr builder x); (expr builder y); (expr builder z) |] "getTextBytes" builder
-
+    | SCall ("setRMargin", [e]) ->
+      L.build_call setRMargin_func [| (expr builder e) |] "setRMargin" builder
+    | SCall ("setLMargin", [e]) ->
+      L.build_call setLMargin_func [| (expr builder e) |] "setLMargin" builder
+    | SCall ("setTopMargin", [e]) ->
+      L.build_call setTopMargin_func [| (expr builder e) |] "setTopMargin" builder
+    | SCall ("setBotMargin", [e]) ->
+      L.build_call setBotMargin_func [| (expr builder e) |] "setBotMargin" builder
 
 
 	  

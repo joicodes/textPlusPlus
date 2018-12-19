@@ -169,9 +169,25 @@ let check (globals, functions) =
 
         (StringMap.add "getTextBytes"
         { typ = Int; fname = "getTextBytes"; formals = [(String, "x"); (Int, "y"); (Int, "z")];
+            locals = []; body = [] }
+        
+        (StringMap.add "setRMargin"
+        { typ = Int; fname = "setRMargin"; formals = [(Int, "y")];
+            locals = []; body = [] }
+
+        (StringMap.add "setLMargin"
+        { typ = Int; fname = "setLMargin"; formals = [(Int, "y")];
+            locals = []; body = [] }
+
+        (StringMap.add "setTopMargin"
+        { typ = Int; fname = "setTopMargin"; formals = [(Int, "y")];
+            locals = []; body = [] }
+
+        (StringMap.add "setBotMargin"
+        { typ = Int; fname = "setBotMargin"; formals = [(Int, "y")];
             locals = []; body = [] } StringMap.empty
-            
-     ))))))))))))))))))))))))))))))
+
+     ))))))))))))))))))))))))))))))))))
   
   in
 
