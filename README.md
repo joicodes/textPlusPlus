@@ -39,7 +39,7 @@ Please execute the following:
 ldconfig /usr/local/lib
 ```
 
-Installing pdf2txt
+#### Installing pdf2txt
 pdf2txt is needed in order to run tests
 ```
 sudo apt-get install python-pdfminer
