@@ -56,13 +56,16 @@ int main(int argc, char **argv)
     printf("page_limit: %d\n", page_limit);
 
     int f_height = HPDF_Font_GetCapHeight(font);
+    int f_height_low = HPDF_Font_GetXHeight(font);
     int f_real_h = f_height * font_size / 1000.0;
+    int f_real_h_low = f_height_low * font_size / 1000.0;
+    printf("f_real_h_low: %d\n", f_real_h_low);
     
     HPDF_Page_SetFontAndSize (page, font, 12); 
     HPDF_Page_BeginText(page);
 
     int last_line = 0;
-    int alignment = 1; // 0 means left, 1 means right, 2 means center
+    int alignment = 0; // 0 means left, 1 means right, 2 means center
 
     int pos = 0;
 
