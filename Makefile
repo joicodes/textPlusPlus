@@ -35,7 +35,7 @@ hello : hello.c
 # Building the tarball
 
 TESTS = \
-  hello wrap left-wrap right-wrap center-wrap
+  hello wrap left-wrap right-wrap center-wrap add-page get-cap-height get-low-height
 
 FAILS = \
   
