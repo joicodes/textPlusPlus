@@ -36,7 +36,7 @@ hello : hello.c
 
 TESTS = \
   hello wrap left-wrap right-wrap center-wrap add-page get-cap-height get-low-height \
-  get-bytes
+  get-bytes left-margin right-margin top-margin bot-margin text-out
 
 FAILS = \
   
