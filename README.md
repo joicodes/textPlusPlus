@@ -1,4 +1,4 @@
-## How to run Hello World:
+## How to run Tests:
 
 #### Installing Libharu:
 
@@ -39,12 +39,17 @@ Please execute the following:
 ldconfig /usr/local/lib
 ```
 
+Installing pdf2txt
+pdf2txt is needed in order to run tests
+```
+sudo apt-get install python-pdfminer
+```
 
-#### Run Hello World:
+#### Run Tests:
 Assuming that LLVM, LLI, OPAM, OCAML, Ocamlbuild, etc are installed, run:
 ```
 make
 ```
 
-a file called `text.pdf` is produced. 
+A file called `text.pdf` is produced. 
 
