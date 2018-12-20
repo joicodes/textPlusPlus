@@ -1,4 +1,4 @@
-(* Semantically-checked Abstract Syntax Tree and functions for printing it *)
+(* Semantically-checked Abstract Syntax Tree *)
 
 open Ast
 
